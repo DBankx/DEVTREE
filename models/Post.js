@@ -9,7 +9,7 @@ const postSchema = new mongoose.Schema({
     type: String,
     max: 400
   },
-  name: {
+  username: {
     type: String
   },
   avatar: {
@@ -34,6 +34,9 @@ const postSchema = new mongoose.Schema({
         max: 400
       },
       avatar: {
+        type: String
+      },
+      username: {
         type: String
       },
       date: {
