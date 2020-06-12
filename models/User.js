@@ -30,6 +30,12 @@ const userSchema = new mongoose.Schema({
       user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
+      },
+      username: {
+        type: String
+      },
+      avatar: {
+        type: String
       }
     }
   ],
@@ -38,6 +44,12 @@ const userSchema = new mongoose.Schema({
       user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
+      },
+      username: {
+        type: String
+      },
+      avatar: {
+        type: String
       }
     }
   ]

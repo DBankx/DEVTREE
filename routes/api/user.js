@@ -112,9 +112,21 @@ router.put('/follow/:user_id', auth, async (req, res) => {
       return res.status(400).json({ msg: 'you already follow user' });
     }
 
-    user.followers.unshift({ user: req.user.id });
+    const newFollower = {
+      user: req.user.id,
+      username: userMain.username,
+      avatar: userMain.avatar
+    };
 
-    userMain.following.unshift({ user: req.params.user_id });
+    const newFollowing = {
+      user: req.params.user_id,
+      username: user.username,
+      avatar: user.avatar
+    };
+
+    user.followers.unshift(newFollower);
+
+    userMain.following.unshift(newFollowing);
 
     await user.save();
 
