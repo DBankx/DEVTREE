@@ -1060,3 +1060,8 @@ main {
 .lock {
   font-size: 100rem;
 }
+
+.alert {
+  position: absolute;
+  top: 0;
+}

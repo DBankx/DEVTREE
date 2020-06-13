@@ -6,8 +6,10 @@ import Zoom from '@material-ui/core/Zoom';
 import LockOpenRoundedIcon from '@material-ui/icons/LockOpenRounded';
 import devtree from '../../img/devtree.png';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
 
-const Register = (props) => {
+const Register = ({ setAlert }) => {
   const [formData, setFormData] = useState({
     name: '',
     date: '',
@@ -44,6 +46,7 @@ const Register = (props) => {
               onSubmit={(e) => {
                 e.preventDefault();
                 console.log('Done');
+                setAlert('registration Succesful', 'error');
               }}
             >
               <TextField
@@ -100,6 +103,8 @@ const Register = (props) => {
   );
 };
 
-Register.propTypes = {};
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired
+};
 
-export default Register;
+export default connect(null, { setAlert })(Register);
