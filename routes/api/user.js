@@ -25,7 +25,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { email, name, username, password } = req.body;
+    const { email, name, username, password, dateofbirth } = req.body;
 
     try {
       let user = await User.findOne({
@@ -51,7 +51,8 @@ router.post(
         email: email,
         username: username,
         avatar: avatar,
-        password: password
+        password: password,
+        dateofbirth: dateofbirth
       });
 
       // hash the password

@@ -25,6 +25,9 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  dateofbirth: {
+    type: Date
+  },
   following: [
     {
       user: {
