@@ -23,9 +23,7 @@ router.post(
   '/',
   [
     check('username', 'Valid username is required').not().isEmpty(),
-    check('password', 'Min password length is 6 characters').isLength({
-      min: 6
-    })
+    check('password', 'valid password is required').not().isEmpty()
   ],
   async (req, res) => {
     const errors = validationResult(req);

@@ -5,11 +5,12 @@ import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
 import LockOpenRoundedIcon from '@material-ui/icons/LockOpenRounded';
 import devtree from '../../img/devtree.png';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { registerUser } from '../../actions/auth';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, registerUser, auth: { isAuthenticated } }) => {
   const [formData, setFormData] = useState({
     name: '',
     date: '',
@@ -31,6 +32,10 @@ const Register = ({ setAlert }) => {
     });
   }
 
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
+
   return (
     <Fragment>
       <div className='register-body'>
@@ -45,8 +50,13 @@ const Register = ({ setAlert }) => {
               className='mt-3'
               onSubmit={(e) => {
                 e.preventDefault();
-                console.log('Done');
-                setAlert('registration Succesful', 'error');
+                registerUser({
+                  name: name,
+                  email: email,
+                  password: password,
+                  username: username,
+                  dateofbirth: date
+                });
               }}
             >
               <TextField
@@ -104,7 +114,14 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, { setAlert })(Register);
+const mapState = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapState, { setAlert, registerUser })(Register);

@@ -3,12 +3,14 @@ const express = require('express');
 const port = process.env.PORT || 6000;
 const app = express();
 const connectToDB = require('./db');
+const cors = require('cors');
 
 // connection to database
 connectToDB();
 
 // middlewares
 app.use(express.json({ extended: false }));
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('welcome to dev tree');

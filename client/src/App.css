@@ -10,6 +10,7 @@
 body {
   color: #000;
   background: #fff;
+  overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -83,6 +84,7 @@ main {
 .navi-item button {
   background-color: #8c52ff;
   margin-left: 0.7rem;
+  outline: none;
 }
 
 .fas {
@@ -359,6 +361,7 @@ main {
   color: #fff;
   font-weight: 600;
   width: 50%;
+  outline: none;
 }
 
 .auth-form button:hover {

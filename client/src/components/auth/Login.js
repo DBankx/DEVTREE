@@ -6,14 +6,17 @@ import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
 import LockOpenRoundedIcon from '@material-ui/icons/LockOpenRounded';
 import devtree from '../../img/devtree.png';
+import { login } from '../../actions/auth';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-const Login = (props) => {
+const Login = ({ login, auth: { isAuthenticated } }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   });
 
-  const { name, date, username, email, password } = formData;
+  const { username, password } = formData;
 
   function handleFormData(e) {
     const { name, value } = e.target;
@@ -24,6 +27,10 @@ const Login = (props) => {
         [name]: value
       };
     });
+  }
+
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
   }
 
   return (
@@ -41,7 +48,7 @@ const Login = (props) => {
               className='mt-5'
               onSubmit={(e) => {
                 e.preventDefault();
-                console.log('Done');
+                login({ username: username, password: password });
               }}
             >
               <TextField
@@ -74,6 +81,14 @@ const Login = (props) => {
   );
 };
 
-Login.propTypes = {};
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool
+};
 
-export default Login;
+const mapState = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapState, { login })(Login);
