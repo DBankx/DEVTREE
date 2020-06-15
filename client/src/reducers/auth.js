@@ -4,7 +4,8 @@ import {
   LOGIN,
   LOAD_USER,
   AUTH_ERROR,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT
 } from '../actions/index';
 
 const initialState = {
@@ -32,6 +33,7 @@ const auth = (state = initialState, action) => {
     case REGISTER_FAIL:
     case LOGIN_FAIL:
     case AUTH_ERROR:
+    case LOGOUT:
       // remove the item from the local storage
       localStorage.removeItem('token');
       return {

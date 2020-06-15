@@ -13,8 +13,10 @@ import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
 import ContactSupportTwoToneIcon from '@material-ui/icons/ContactSupportTwoTone';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../../actions/auth';
 
-const Navbar = () => {
+const Navbar = ({ auth: { isAuthenticated }, logout }) => {
   const guestLinks = (
     <Zoom in={true}>
       <ul className='navi-nav'>
@@ -99,9 +101,9 @@ const Navbar = () => {
         </a>
       </li>
       <li className='navi-item'>
-        <a href='#' className='navi-link'>
+        <a href='#' onClick={() => logout()} className='navi-link'>
           <Zoom in={true}>
-            <Fab className='logout-button'>
+            <Fab onClick={() => logout()} className='logout-button'>
               <PowerSettingsNewTwoToneIcon className='fas2' />
             </Fab>
           </Zoom>
@@ -113,9 +115,15 @@ const Navbar = () => {
 
   return (
     <Fragment>
-      <nav className='navigation'>{guestLinks}</nav>
+      <nav className='navigation'>
+        {isAuthenticated ? authLinks : guestLinks}
+      </nav>
     </Fragment>
   );
 };
 
-export default Navbar;
+const mapState = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapState, { logout })(Navbar);

@@ -1,22 +1,43 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Avatar from '@material-ui/core/Avatar';
+import Spinner from './Spinner';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const Navbar2 = ({ auth: { isAuthenticated } }) => {
+const Navbar2 = ({ auth: { isAuthenticated, user, loading } }) => {
+  const today = new Date();
+  const options = {
+    weekday: 'short',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+  const mainDate = today.toLocaleDateString('en-US', options);
   return (
     <Fragment>
       {isAuthenticated ? (
         <nav className='navigation2'>
           <ul className='navi2'>
-            <li>Jun/20/2021</li>
+            <li>{mainDate}</li>
             <li className='optional'>
-              status: <span className='status'>ONLINE</span>
+              status:{' '}
+              {loading ? (
+                <span className='status'>OFFLINE</span>
+              ) : (
+                <span className='status'>ONLINE</span>
+              )}
             </li>
             <li>
               <div className='prof'>
-                <span className='profile-pic'>DBankx</span>
-                <img className='rounded-circle' src='john.jpg' alt='' />
-                <i className='fas fa-chevron-down'></i>
+                {user !== null && loading === false ? (
+                  <strong>{user.username}</strong>
+                ) : null}
+
+                {user !== null && loading === false ? (
+                  <Avatar src={user.avatar} alt='user' />
+                ) : null}
+                <MoreVertIcon className='chevron' />
               </div>
             </li>
           </ul>

@@ -28,6 +28,7 @@ body::-webkit-scrollbar-thumb {
 
 main {
   margin-left: 5rem;
+  height: 100vh;
 }
 
 .next {
@@ -404,19 +405,22 @@ main {
   color: green;
 }
 
-.navigation2 .navi2 li img {
-  width: 60px;
-}
-
 .navigation2 .navi2 li .profile-pic {
   font-weight: 600;
   margin-right: 1em;
 }
 
-.navigation2 .navi2 li .fas {
-  font-size: 17px;
-  color: #777;
-  margin-left: 0;
+.prof {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 1em;
+}
+
+.prof.chevron {
+  margin-left: -30px;
+  padding: 0;
 }
 
 @media (max-width: 600px) {
@@ -1067,4 +1071,11 @@ main {
 .alert {
   position: absolute;
   top: 0;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -10,6 +10,8 @@ import { Provider } from 'react-redux';
 import SetAlert from './components/auth/Alert';
 import { loadUser } from './actions/auth';
 import Navbar2 from './components/layout/Navbar2';
+import PrivateRoute from './helpers/PrivateRoute';
+import Dashboard from './components/dashboard/Dashboard';
 
 function App() {
   // load the user from the backend immideatly
@@ -28,6 +30,9 @@ function App() {
             <Switch>
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
+              <div className='next'>
+                <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              </div>
             </Switch>
           </main>
         </Fragment>
