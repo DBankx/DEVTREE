@@ -6,6 +6,7 @@ import { getProfile } from '../../actions/profile';
 import auth from '../../reducers/auth';
 import FaceIcon from '@material-ui/icons/Face';
 import DashboardActions from './DashboardActions';
+import Experience from './Experience';
 
 const Dashboard = ({
   auth: { user },
@@ -19,15 +20,22 @@ const Dashboard = ({
   return loading && profile === null ? (
     <Spinner />
   ) : (
-    <div className='dash-box'>
-      <div className='greeting'>
-        <h2>Dashboard</h2>
-        <h3>
-          Welcome back <strong>{user ? user.username : null}</strong>
-        </h3>
-      </div>
-      <div className='dashboard'>
-        <DashboardActions />
+    <div className='next'>
+      <div className='dash-box'>
+        <div className='greeting'>
+          <h2>Dashboard</h2>
+          <h3>
+            Welcome back <strong>{user ? user.username : null}</strong>
+          </h3>
+        </div>
+        <div className='dashboard'>
+          <DashboardActions />
+          {profile !== null ? (
+            <Experience experience={profile.experience} />
+          ) : (
+            'Profile loading'
+          )}
+        </div>
       </div>
     </div>
   );

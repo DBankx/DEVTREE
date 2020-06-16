@@ -21,8 +21,7 @@ const profile = (state = initialState, action) => {
       return {
         ...state,
         errors: payload,
-        loading: false,
-        profile: null
+        loading: false
       };
     default:
       return state;

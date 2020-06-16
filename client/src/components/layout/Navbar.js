@@ -77,28 +77,28 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       </li>
 
       <li className='navi-item'>
-        <a href='#' className='navi-link'>
+        <Link to='/dashboard' className='navi-link'>
           <DashboardTwoToneIcon className='fas' />
           <span className='link-text'>Dashboard</span>
-        </a>
+        </Link>
       </li>
       <li className='navi-item'>
-        <a href='#' className='navi-link'>
+        <Link to='/feed' className='navi-link'>
           <MarkunreadMailboxTwoToneIcon className='fas' />
           <span className='link-text'>Feed</span>
-        </a>
+        </Link>
       </li>
       <li className='navi-item'>
-        <a href='#' className='navi-link'>
+        <Link to='/developers' className='navi-link'>
           <PeopleAltTwoToneIcon className='fas' />
           <span className='link-text'>Developers</span>
-        </a>
+        </Link>
       </li>
       <li className='navi-item'>
-        <a href='#' className='navi-link'>
+        <Link to='/profile' className='navi-link'>
           <AccountCircleTwoToneIcon className='fas' />
           <span className='link-text'>Profile</span>
-        </a>
+        </Link>
       </li>
       <li className='navi-item'>
         <a href='#' onClick={() => logout()} className='navi-link'>

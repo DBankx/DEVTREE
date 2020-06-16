@@ -17,7 +17,7 @@ function App() {
   // load the user from the backend immideatly
   useEffect(() => {
     store.dispatch(loadUser());
-  }, [loadUser]);
+  }, []);
   return (
     <Provider store={store}>
       <Router>
@@ -30,9 +30,7 @@ function App() {
             <Switch>
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
-              <div className='next'>
-                <PrivateRoute exact path='/dashboard' component={Dashboard} />
-              </div>
+              <PrivateRoute exact path='/dashboard' component={Dashboard} />
             </Switch>
           </main>
         </Fragment>

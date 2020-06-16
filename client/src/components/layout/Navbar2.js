@@ -48,7 +48,7 @@ const Navbar2 = ({ auth: { isAuthenticated, user, loading } }) => {
 };
 
 Navbar2.propTypes = {
-  auth: PropTypes.func.isRequired
+  auth: PropTypes.object.isRequired
 };
 
 const mapState = (state) => ({
