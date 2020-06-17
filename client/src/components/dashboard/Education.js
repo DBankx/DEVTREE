@@ -8,16 +8,16 @@ import SchoolIcon from '@material-ui/icons/School';
 
 const Education = ({ education }) => {
   return (
-    <div class='experience-credentials'>
+    <div className='experience-credentials'>
       <h4>
         <SchoolIcon /> Education Credentials
       </h4>
-      <table class='table'>
+      <table className='table'>
         <thead>
           <tr>
             <th>School</th>
-            <th class='hide-sm'>Degree</th>
-            <th class='hide-sm'>Years</th>
+            <th className='hide-sm'>Degree</th>
+            <th className='hide-sm'>Years</th>
             <th></th>
           </tr>
         </thead>
@@ -26,11 +26,11 @@ const Education = ({ education }) => {
             return (
               <tr key={edu._id}>
                 <td>{edu.school}</td>
-                <td class='hide-sm'>
+                <td className='hide-sm'>
                   {edu.fieldofstudy} -{' '}
                   {edu.degree ? <span>{edu.degree}</span> : null}
                 </td>
-                <td class='hide-sm'>
+                <td className='hide-sm'>
                   <Moment format='YYYY/MM/DD'>{edu.from}</Moment> -{' '}
                   {edu.to ? (
                     <Moment format='YYYY/MM/DD'>{edu.to}</Moment>

@@ -12,6 +12,7 @@ import { loadUser } from './actions/auth';
 import Navbar2 from './components/layout/Navbar2';
 import PrivateRoute from './helpers/PrivateRoute';
 import Dashboard from './components/dashboard/Dashboard';
+import ProfileForm from './components/profile-forms/ProfileForm';
 
 function App() {
   // load the user from the backend immideatly
@@ -31,6 +32,11 @@ function App() {
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <PrivateRoute
+                exact
+                path='/edit-profile'
+                component={ProfileForm}
+              />
             </Switch>
           </main>
         </Fragment>

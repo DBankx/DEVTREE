@@ -8,16 +8,16 @@ import ClearIcon from '@material-ui/icons/Clear';
 
 const Experience = ({ experience }) => {
   return (
-    <div class='experience-credentials'>
+    <div className='experience-credentials'>
       <h4>
         <WorkIcon /> Experience Credentials{' '}
       </h4>
-      <table class='table'>
+      <table className='table'>
         <thead>
           <tr>
             <th>Company</th>
-            <th class='hide-sm'>Position</th>
-            <th class='hide-sm'>Dates</th>
+            <th className='hide-sm'>Position</th>
+            <th className='hide-sm'>Dates</th>
             <th></th>
           </tr>
         </thead>
@@ -27,8 +27,8 @@ const Experience = ({ experience }) => {
                 return (
                   <tr key={exp._id}>
                     <td>{exp.company}</td>
-                    <td class='hide-sm'>{exp.title}</td>
-                    <td class='hide-sm'>
+                    <td className='hide-sm'>{exp.title}</td>
+                    <td className='hide-sm'>
                       <Moment format='YYYY/MM/DD'>{exp.from}</Moment> -{' '}
                       {exp.to ? (
                         <Moment fromat='YYYY/MM/DD'>{exp.from}</Moment>

@@ -11,7 +11,9 @@ const SetAlert = ({ alerts }) => {
           return (
             <Fragment>
               <div className='alert' key={alert.id}>
-                <Alert severity={alert.alertType}>{alert.message}</Alert>
+                <Alert style={{ position: 'fixed' }} severity={alert.alertType}>
+                  {alert.message}
+                </Alert>
               </div>
             </Fragment>
           );

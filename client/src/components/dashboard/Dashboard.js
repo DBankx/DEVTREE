@@ -15,19 +15,22 @@ function Dashboard({
   auth: { user },
   profile: { profile, loading }
 }) {
-  useEffect(async () => {
-    await user;
-    getProfile();
-  }, [getProfile]);
+  useEffect(() => {
+    async function profile() {
+      await user;
+      getProfile();
+    }
+    profile();
+  }, [profile, getProfile]);
 
   // if the profile is null and its still loading show the spinner
   return loading && profile === null && user === null ? (
     <Spinner />
   ) : (
     <Fragment>
-      <div class='next'>
-        <div class='dash-box'>
-          <div class='greeting'>
+      <div className='next'>
+        <div className='dash-box'>
+          <div className='greeting'>
             <h2>Dashboard</h2>
             <h3>
               <FaceIcon /> Welcome back <strong>{user && user.username}</strong>
@@ -41,12 +44,12 @@ function Dashboard({
                 {profile.experience ? (
                   <Experience experience={profile.experience} />
                 ) : (
-                  <h4>No Experience Added... </h4>
+                  <h4 className='mt-3'>No Experience Added... </h4>
                 )}
                 {profile.education ? (
                   <Education education={profile.education} />
                 ) : (
-                  <h4>No Education Added...</h4>
+                  <h4 className='mt-3'>No Education Added...</h4>
                 )}
                 <Fab
                   variant='extended'

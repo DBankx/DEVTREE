@@ -145,6 +145,10 @@ main {
   main {
     margin: 0;
   }
+
+  .next {
+    margin-bottom: 5rem;
+  }
   .logo-img {
     display: block;
   }
@@ -1071,6 +1075,7 @@ main {
 .alert {
   position: absolute;
   top: 0;
+  z-index: 30;
 }
 
 .spinner {
@@ -1078,4 +1083,33 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.edit-form {
+  width: 100%;
+}
+
+.image img {
+  width: 100%;
+}
+
+.edit-form input {
+  width: 80vw;
+}
+
+small {
+  display: block;
+}
+
+.btn-toggle {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+.btn-toggle li {
+  padding-right: 1em;
+}
+
+.btn-toggle button {
+  outline: none;
 }
