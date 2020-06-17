@@ -52,15 +52,6 @@ const Experience = ({ experience }) => {
                 );
               })
             : 'No previous Experience'}
-
-          <tr>
-            <td>Traversy Media</td>
-            <td class='hide-sm'>Instructor & Developer</td>
-            <td class='hide-sm'>02-03-2015 - Now</td>
-            <td>
-              <button class='btn btn-danger'>Delete</button>
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>
