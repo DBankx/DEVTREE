@@ -16,12 +16,12 @@ const DashboardActions = (props) => {
         </li>
         <li>
           <Link to='/add-education' className='btn-link'>
-            <SchoolIcon /> Edit Education
+            <SchoolIcon /> Add Education
           </Link>
         </li>
         <li>
           <Link to='/add-experience' className='btn-link'>
-            <WorkIcon /> Edit Experience
+            <WorkIcon /> Add Experience
           </Link>
         </li>
       </ul>

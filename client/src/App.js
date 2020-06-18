@@ -13,6 +13,9 @@ import Navbar2 from './components/layout/Navbar2';
 import PrivateRoute from './helpers/PrivateRoute';
 import Dashboard from './components/dashboard/Dashboard';
 import ProfileForm from './components/profile-forms/ProfileForm';
+import Experience from './components/profile-forms/Experience';
+import Education from './components/profile-forms/Education';
+import CreateProfile from './components/profile-forms/CreateProfile';
 
 function App() {
   // load the user from the backend immideatly
@@ -36,6 +39,17 @@ function App() {
                 exact
                 path='/edit-profile'
                 component={ProfileForm}
+              />
+              <PrivateRoute
+                exact
+                path='/add-experience'
+                component={Experience}
+              />
+              <PrivateRoute exact path='/add-education' component={Education} />
+              <PrivateRoute
+                exact
+                path='/create-profile'
+                component={CreateProfile}
               />
             </Switch>
           </main>

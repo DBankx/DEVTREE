@@ -20,7 +20,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-const ProfileForm = ({
+const CreateProfile = ({
   getProfile,
   auth: { user },
   profile: { profile, loading },
@@ -92,7 +92,7 @@ const ProfileForm = ({
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              updateProfile(formData, history, true);
+              updateProfile(formData, history);
             }}
           >
             <div className='input-box mb-3'>
@@ -340,7 +340,7 @@ const ProfileForm = ({
   );
 };
 
-ProfileForm.propTypes = {
+CreateProfile.propTypes = {
   auth: PropTypes.object.isRequired,
   getProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
@@ -353,5 +353,5 @@ const mapState = (state) => ({
 });
 
 export default connect(mapState, { getProfile, updateProfile })(
-  withRouter(ProfileForm)
+  withRouter(CreateProfile)
 );

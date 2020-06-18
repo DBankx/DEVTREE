@@ -5,7 +5,8 @@ import {
   LOAD_USER,
   AUTH_ERROR,
   LOGIN_FAIL,
-  LOGOUT
+  LOGOUT,
+  DELETE_ACCOUNT
 } from '../actions/index';
 
 const initialState = {
@@ -34,13 +35,15 @@ const auth = (state = initialState, action) => {
     case LOGIN_FAIL:
     case AUTH_ERROR:
     case LOGOUT:
+    case DELETE_ACCOUNT:
       // remove the item from the local storage
       localStorage.removeItem('token');
       return {
         ...state,
         token: null,
         isAuthenticated: false,
-        loading: false
+        loading: false,
+        user: null
       };
     // set the user to the payload
     case LOAD_USER:

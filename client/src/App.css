@@ -1113,3 +1113,17 @@ small {
 .btn-toggle button {
   outline: none;
 }
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.checbox li {
+  padding: 0 10px;
+}
+
+.div-bottom button {
+  color: #fff;
+}

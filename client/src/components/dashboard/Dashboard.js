@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getProfile } from '../../actions/profile';
+import { getProfile, deleteAccunt } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import { Link } from 'react-router-dom';
 import DashboardActions from './DashboardActions';
@@ -9,9 +9,11 @@ import Experience from './Experience';
 import Fab from '@material-ui/core/Fab';
 import FaceIcon from '@material-ui/icons/Face';
 import Education from './Education';
+import Zoom from '@material-ui/core/Zoom';
 
 function Dashboard({
   getProfile,
+  deleteAccunt,
   auth: { user },
   profile: { profile, loading }
 }) {
@@ -20,8 +22,9 @@ function Dashboard({
       await user;
       getProfile();
     }
+
     profile();
-  }, [profile, getProfile]);
+  }, [getProfile]);
 
   // if the profile is null and its still loading show the spinner
   return loading && profile === null && user === null ? (
@@ -41,15 +44,19 @@ function Dashboard({
               <Fragment>
                 {' '}
                 <DashboardActions />
-                {profile.experience ? (
+                {profile.experience.length > 0 ? (
                   <Experience experience={profile.experience} />
                 ) : (
-                  <h4 className='mt-3'>No Experience Added... </h4>
+                  <h6 className='mt-4' style={{ fontWeight: '600' }}>
+                    No Experience Added...{' '}
+                  </h6>
                 )}
-                {profile.education ? (
+                {profile.education.length > 0 ? (
                   <Education education={profile.education} />
                 ) : (
-                  <h4 className='mt-3'>No Education Added...</h4>
+                  <h6 className='mt-4' style={{ fontWeight: '600' }}>
+                    No Education Added...
+                  </h6>
                 )}
                 <Fab
                   variant='extended'
@@ -58,16 +65,34 @@ function Dashboard({
                     color: '#fff',
                     outline: 'none'
                   }}
+                  onClick={() => deleteAccunt()}
+                  className='mt-4'
                 >
                   Delete Account
                 </Fab>
               </Fragment>
             ) : (
-              <Fragment>
-                <p>You have not set up a profile, Please add some info</p>
-                <Fab variant='extended'>
-                  <Link to='/create-profile'>Create Profile</Link>
-                </Fab>
+              <Fragment className='div-bottom'>
+                <p className='mt-3'>
+                  You have not set up a profile, Please add some info
+                </p>
+                <Zoom in={true}>
+                  <Fab
+                    className='mt-3'
+                    variant='extended'
+                    style={{
+                      backgroundColor: '#8c52ff',
+                      padding: '8px 30px'
+                    }}
+                  >
+                    <Link
+                      to='/create-profile'
+                      style={{ color: '#fff', textDecoration: 'none' }}
+                    >
+                      Create Profile
+                    </Link>
+                  </Fab>
+                </Zoom>
               </Fragment>
             )}
           </div>
@@ -79,7 +104,10 @@ function Dashboard({
 
 Dashboard.propTypes = {
   getProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  education: PropTypes.array,
+  experience: PropTypes.array,
+  deleteAccunt: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -87,4 +115,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getProfile })(Dashboard);
+export default connect(mapStateToProps, { getProfile, deleteAccunt })(
+  Dashboard
+);

@@ -5,8 +5,10 @@ import WorkIcon from '@material-ui/icons/Work';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
 import ClearIcon from '@material-ui/icons/Clear';
+import { connect } from 'react-redux';
+import { deleteExp } from '../../actions/profile';
 
-const Experience = ({ experience }) => {
+const Experience = ({ experience, deleteExp }) => {
   return (
     <div className='experience-credentials'>
       <h4>
@@ -31,7 +33,7 @@ const Experience = ({ experience }) => {
                     <td className='hide-sm'>
                       <Moment format='YYYY/MM/DD'>{exp.from}</Moment> -{' '}
                       {exp.to ? (
-                        <Moment fromat='YYYY/MM/DD'>{exp.from}</Moment>
+                        <Moment format='YYYY/MM/DD'>{exp.to}</Moment>
                       ) : (
                         'current'
                       )}
@@ -43,6 +45,7 @@ const Experience = ({ experience }) => {
                             outline: 'none',
                             backgroundColor: 'rgb(202, 70, 70)'
                           }}
+                          onClick={() => deleteExp(exp._id)}
                         >
                           <ClearIcon style={{ color: '#fff' }} />
                         </Fab>
@@ -59,7 +62,8 @@ const Experience = ({ experience }) => {
 };
 
 Experience.propTypes = {
-  experience: PropTypes.array.isRequired
+  experience: PropTypes.array.isRequired,
+  deleteExp: PropTypes.func.isRequired
 };
 
-export default Experience;
+export default connect(null, { deleteExp })(Experience);

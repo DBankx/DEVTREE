@@ -5,8 +5,10 @@ import Zoom from '@material-ui/core/Zoom';
 import ClearIcon from '@material-ui/icons/Clear';
 import Moment from 'react-moment';
 import SchoolIcon from '@material-ui/icons/School';
+import { connect } from 'react-redux';
+import { deleteEdu } from '../../actions/profile';
 
-const Education = ({ education }) => {
+const Education = ({ education, deleteEdu }) => {
   return (
     <div className='experience-credentials'>
       <h4>
@@ -44,6 +46,7 @@ const Education = ({ education }) => {
                       outline: 'none',
                       backgroundColor: 'rgb(202, 70, 70)'
                     }}
+                    onClick={() => deleteEdu(edu._id)}
                   >
                     <ClearIcon style={{ color: '#fff' }} />
                   </Fab>
@@ -57,6 +60,9 @@ const Education = ({ education }) => {
   );
 };
 
-Education.propTypes = {};
+Education.propTypes = {
+  deleteEdu: PropTypes.func.isRequired,
+  education: PropTypes.array.isRequired
+};
 
-export default Education;
+export default connect(null, { deleteEdu })(Education);
