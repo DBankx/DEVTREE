@@ -7,10 +7,9 @@ import LockOpenRoundedIcon from '@material-ui/icons/LockOpenRounded';
 import devtree from '../../img/devtree.png';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
 import { registerUser } from '../../actions/auth';
 
-const Register = ({ setAlert, registerUser, auth: { isAuthenticated } }) => {
+const Register = ({ registerUser, auth: { isAuthenticated } }) => {
   const [formData, setFormData] = useState({
     name: '',
     date: '',
@@ -114,14 +113,12 @@ const Register = ({ setAlert, registerUser, auth: { isAuthenticated } }) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired,
   registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool
+  auth: PropTypes.object.isRequired
 };
 
 const mapState = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapState, { setAlert, registerUser })(Register);
+export default connect(mapState, { registerUser })(Register);

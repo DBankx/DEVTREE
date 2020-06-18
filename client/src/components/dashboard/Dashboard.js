@@ -24,7 +24,7 @@ function Dashboard({
     }
 
     profile();
-  }, [getProfile]);
+  }, [getProfile, user]);
 
   // if the profile is null and its still loading show the spinner
   return loading && profile === null && user === null ? (
@@ -36,7 +36,8 @@ function Dashboard({
           <div className='greeting'>
             <h2>Dashboard</h2>
             <h3>
-              <FaceIcon /> Welcome back <strong>{user && user.username}</strong>
+              <FaceIcon style={{ fontSize: '20px' }} /> Welcome back{' '}
+              <strong>{user && user.username}</strong>
             </h3>
           </div>
           <div className='dashboard'>

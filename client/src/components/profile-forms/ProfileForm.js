@@ -10,7 +10,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { getProfile, updateProfile } from '../../actions/profile';
 import { connect } from 'react-redux';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
@@ -48,7 +48,7 @@ const ProfileForm = ({
       getProfile();
     }
     profile();
-  }, [getProfile, loading]);
+  }, [getProfile, loading, user]);
 
   const [toggle, setToggle] = useState(false);
 

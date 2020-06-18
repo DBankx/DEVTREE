@@ -16,6 +16,7 @@ import ProfileForm from './components/profile-forms/ProfileForm';
 import Experience from './components/profile-forms/Experience';
 import Education from './components/profile-forms/Education';
 import CreateProfile from './components/profile-forms/CreateProfile';
+import Profiles from './components/profiles/Profiles';
 
 function App() {
   // load the user from the backend immideatly
@@ -51,6 +52,7 @@ function App() {
                 path='/create-profile'
                 component={CreateProfile}
               />
+              <Route exact path='/developers' component={Profiles} />
             </Switch>
           </main>
         </Fragment>

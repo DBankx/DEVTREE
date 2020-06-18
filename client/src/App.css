@@ -453,29 +453,18 @@ main {
   width: 70%;
 }
 
-.developers .find-user input {
-  border: none;
-  padding-left: 1em;
-  border-radius: 30px;
-  height: 40px;
-  width: 70%;
-  outline: none;
-  border: 1px solid #ddd;
-}
-
 .developers .find-user button {
   border: none;
-  background-color: #603cc9;
-  color: #fff;
-  padding: 8px 20px;
-  border-radius: 50px;
+  background: none;
+  outline: none;
+  box-shadow: none;
 }
 
 .card {
   text-align: center;
   border-radius: 10px;
   z-index: 0;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); */
 }
 
 .card:hover {
@@ -485,14 +474,17 @@ main {
   transition: 600ms;
 }
 
-.card:hover .btndev {
+.card:hover button {
   background-color: #fff;
+}
+
+.card:hover button a {
   color: #603cc9;
 }
 
 .card img {
-  width: 70%;
-  height: 70%;
+  width: 40%;
+  height: 40%;
   margin: 1em auto;
 }
 
@@ -504,13 +496,24 @@ main {
   margin-bottom: 2em;
 }
 
-.card .btndev {
+/* .card .btndev {
   padding: 20px 50px;
   background-color: #603cc9;
   color: #fff;
   border-radius: 30px;
   text-decoration: none;
   margin-bottom: 2em;
+} */
+
+.card button {
+  background-color: #603cc9;
+  padding: 8px 30px;
+}
+
+.card button a {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
 }
 
 .devs {
@@ -1126,4 +1129,20 @@ small {
 
 .div-bottom button {
   color: #fff;
+}
+
+.cardList {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  margin-top: -2em;
+}
+
+.cardList li {
+  padding: 0 15px;
+}
+
+.card-title {
+  font-weight: 600;
 }

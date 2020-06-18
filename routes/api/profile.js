@@ -115,7 +115,11 @@ router.post(
 router.get('/', async (req, res) => {
   try {
     const profiles = await Profile.find().populate('user', [
-      ['avatar', 'following', 'followers', 'name']
+      'avatar',
+      'name',
+      'username',
+      'following',
+      'followers'
     ]);
 
     res.json(profiles);

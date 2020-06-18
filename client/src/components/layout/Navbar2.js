@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
-import Spinner from './Spinner';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const Navbar2 = ({ auth: { isAuthenticated, user, loading } }) => {

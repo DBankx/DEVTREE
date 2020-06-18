@@ -41,15 +41,17 @@ const Education = ({ education, deleteEdu }) => {
                   )}
                 </td>
                 <td>
-                  <Fab
-                    style={{
-                      outline: 'none',
-                      backgroundColor: 'rgb(202, 70, 70)'
-                    }}
-                    onClick={() => deleteEdu(edu._id)}
-                  >
-                    <ClearIcon style={{ color: '#fff' }} />
-                  </Fab>
+                  <Zoom in={true}>
+                    <Fab
+                      style={{
+                        outline: 'none',
+                        backgroundColor: 'rgb(202, 70, 70)'
+                      }}
+                      onClick={() => deleteEdu(edu._id)}
+                    >
+                      <ClearIcon style={{ color: '#fff' }} />
+                    </Fab>
+                  </Zoom>
                 </td>
               </tr>
             );

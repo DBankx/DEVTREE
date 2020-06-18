@@ -4,8 +4,8 @@ import {
   UPDATE_PROFILE,
   DELETE_EDUCATION,
   DELETE_EXPERIENCE,
-  DELETE_ACCOUNT,
-  CLEAR_PROFILE
+  CLEAR_PROFILE,
+  GET_PROFILES
 } from '../actions/index';
 
 const initialState = {
@@ -28,6 +28,12 @@ const profile = (state = initialState, action) => {
         profile: payload,
         loading: false
       };
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false
+      };
     case PROFILE_ERROR:
       return {
         ...state,
@@ -41,6 +47,7 @@ const profile = (state = initialState, action) => {
         repos: null,
         loading: false
       };
+
     default:
       return state;
   }

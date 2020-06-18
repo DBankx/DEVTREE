@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
 import LockOpenRoundedIcon from '@material-ui/icons/LockOpenRounded';
@@ -9,6 +8,12 @@ import devtree from '../../img/devtree.png';
 import { login } from '../../actions/auth';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import PersonIcon from '@material-ui/icons/Person';
 
 const Login = ({ login, auth: { isAuthenticated } }) => {
   const [formData, setFormData] = useState({
@@ -51,21 +56,41 @@ const Login = ({ login, auth: { isAuthenticated } }) => {
                 login({ username: username, password: password });
               }}
             >
-              <TextField
-                name='username'
-                label='Username'
-                type='text'
-                value={username}
-                onChange={handleFormData}
-              />
-              <TextField
-                type='text'
-                label='password'
-                type='password'
-                name='password'
-                value={password}
-                onChange={handleFormData}
-              />
+              <FormControl className='mb-4'>
+                <InputLabel htmlFor='input-with-icon-adornment'>
+                  Username
+                </InputLabel>
+                <Input
+                  id='input-with-icon-adornment'
+                  startAdornment={
+                    <InputAdornment position='start'>
+                      <PersonIcon />
+                    </InputAdornment>
+                  }
+                  value={username}
+                  name='username'
+                  onChange={handleFormData}
+                />
+              </FormControl>
+
+              <FormControl className='mb-4'>
+                <InputLabel htmlFor='input-with-icon-adornment'>
+                  Password
+                </InputLabel>
+                <Input
+                  id='input-with-icon-adornment'
+                  startAdornment={
+                    <InputAdornment position='start'>
+                      <VpnKeyIcon />
+                    </InputAdornment>
+                  }
+                  value={password}
+                  name='password'
+                  onChange={handleFormData}
+                  type='password'
+                />
+              </FormControl>
+
               <Zoom in={true}>
                 <Fab type='submit' variant='extended'>
                   Login

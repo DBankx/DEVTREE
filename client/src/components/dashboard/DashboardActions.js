@@ -1,5 +1,4 @@
 import React from 'react';
-import Fab from '@material-ui/core/Fab';
 import { Link } from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
 import WorkIcon from '@material-ui/icons/Work';

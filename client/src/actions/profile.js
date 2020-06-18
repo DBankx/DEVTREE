@@ -5,7 +5,8 @@ import {
   DELETE_EXPERIENCE,
   DELETE_EDUCATION,
   DELETE_ACCOUNT,
-  CLEAR_PROFILE
+  CLEAR_PROFILE,
+  GET_PROFILES
 } from './index';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -200,5 +201,21 @@ export const deleteAccunt = () => async (dispatch) => {
         payload: { msg: err.response.statusText, status: err.response.status }
       });
     }
+  }
+};
+
+// get all profiles
+export const getAllProfiles = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
+
+  try {
+    const res = await axios.get('/api/profile');
+
+    dispatch({ type: GET_PROFILES, payload: res.data });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
   }
 };

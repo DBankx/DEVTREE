@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import WorkIcon from '@material-ui/icons/Work';
