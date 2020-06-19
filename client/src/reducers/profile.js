@@ -5,11 +5,13 @@ import {
   DELETE_EDUCATION,
   DELETE_EXPERIENCE,
   CLEAR_PROFILE,
-  GET_PROFILES
+  GET_PROFILES,
+  GET_PROFILE_BY_ID
 } from '../actions/index';
 
 const initialState = {
   profile: null,
+  viewProfile: null,
   loading: true,
   profiles: [],
   repos: [],
@@ -45,6 +47,12 @@ const profile = (state = initialState, action) => {
         ...state,
         profile: null,
         repos: null,
+        loading: false
+      };
+    case GET_PROFILE_BY_ID:
+      return {
+        ...state,
+        viewProfile: payload,
         loading: false
       };
 

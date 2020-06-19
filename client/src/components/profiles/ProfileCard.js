@@ -8,7 +8,7 @@ const ProfileCard = ({
   profile: {
     status,
     company,
-    user: { avatar, username, followers, following },
+    user: { avatar, username, followers, following, _id },
     location
   }
 }) => {
@@ -30,8 +30,8 @@ const ProfileCard = ({
           </li>
         </ul>
         <Zoom in={true}>
-          <Fab variant='extended'>
-            <Link to='/#' class='btndev'>
+          <Fab variant='extended' style={{ outline: 'none' }}>
+            <Link to={`/profile/${_id}`} class='btndev'>
               View Profile
             </Link>
           </Fab>

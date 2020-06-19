@@ -6,7 +6,8 @@ import {
   DELETE_EDUCATION,
   DELETE_ACCOUNT,
   CLEAR_PROFILE,
-  GET_PROFILES
+  GET_PROFILES,
+  GET_PROFILE_BY_ID
 } from './index';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -212,6 +213,20 @@ export const getAllProfiles = () => async (dispatch) => {
     const res = await axios.get('/api/profile');
 
     dispatch({ type: GET_PROFILES, payload: res.data });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+// get profile by id
+export const getProfileById = (user_id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/profile/user/${user_id}`);
+
+    dispatch({ type: GET_PROFILE_BY_ID, payload: res.data });
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,

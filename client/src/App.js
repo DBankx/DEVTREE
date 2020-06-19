@@ -17,6 +17,7 @@ import Experience from './components/profile-forms/Experience';
 import Education from './components/profile-forms/Education';
 import CreateProfile from './components/profile-forms/CreateProfile';
 import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
 
 function App() {
   // load the user from the backend immideatly
@@ -53,6 +54,8 @@ function App() {
                 component={CreateProfile}
               />
               <Route exact path='/developers' component={Profiles} />
+
+              <PrivateRoute exact path='/profile/:id' component={Profile} />
             </Switch>
           </main>
         </Fragment>
