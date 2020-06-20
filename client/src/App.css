@@ -776,7 +776,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2em;
-  grid-auto-rows: auto;
+  grid-auto-rows: 100px, auto;
 }
 
 .exp-edu .education {
@@ -1145,4 +1145,8 @@ small {
 
 .card-title {
   font-weight: 600;
+}
+
+.main-profile table td {
+  padding: 1em 15px;
 }

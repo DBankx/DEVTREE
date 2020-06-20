@@ -55,7 +55,7 @@ function App() {
               />
               <Route exact path='/developers' component={Profiles} />
 
-              <PrivateRoute exact path='/profile/:id' component={Profile} />
+              <Route exact path='/profile/:id' component={Profile} />
             </Switch>
           </main>
         </Fragment>

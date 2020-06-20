@@ -20,9 +20,9 @@ const Profiles = ({ profile, getAllProfiles }) => {
       {profile.loading ? (
         <Spinner />
       ) : (
-        <div class='next'>
-          <div class='developers'>
-            <div class='find-user'>
+        <div className='next'>
+          <div className='developers'>
+            <div className='find-user'>
               <form>
                 <TextField
                   id='outlined-basic'
@@ -39,13 +39,13 @@ const Profiles = ({ profile, getAllProfiles }) => {
                 </Zoom>
               </form>
             </div>
-            <div class='devs'>
+            <div className='devs'>
               {profile.profiles.length > 0 ? (
                 profile.profiles.map((profile) => {
                   return <ProfileCard key={profile._id} profile={profile} />;
                 })
               ) : (
-                <h4 className='mt-4'>No Profiles Found.</h4>
+                <Spinner />
               )}
             </div>
           </div>

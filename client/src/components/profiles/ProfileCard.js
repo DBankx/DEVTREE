@@ -13,14 +13,14 @@ const ProfileCard = ({
   }
 }) => {
   return (
-    <div class='card'>
+    <div className='card'>
       <img
         src={avatar}
         className='rounded-circle card-img-top'
         alt='Profile Image'
       />
-      <div class='card-body'>
-        <h5 class='card-title'>{username}</h5>
+      <div className='card-body'>
+        <h5 className='card-title'>{username}</h5>
         <ul className='cardList'>
           <li>
             <strong>{following.length} </strong>following
@@ -31,7 +31,7 @@ const ProfileCard = ({
         </ul>
         <Zoom in={true}>
           <Fab variant='extended' style={{ outline: 'none' }}>
-            <Link to={`/profile/${_id}`} class='btndev'>
+            <Link to={`/profile/${_id}`} className='btndev'>
               View Profile
             </Link>
           </Fab>
