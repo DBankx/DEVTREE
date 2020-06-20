@@ -6,14 +6,17 @@ import {
   AUTH_ERROR,
   LOGIN_FAIL,
   LOGOUT,
-  DELETE_ACCOUNT
+  DELETE_ACCOUNT,
+  UPDATE_FOLLOW,
+  FOLLOW_ERROR
 } from '../actions/index';
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
-  user: null
+  user: null,
+  error: {}
 };
 
 const auth = (state = initialState, action) => {
@@ -52,6 +55,19 @@ const auth = (state = initialState, action) => {
         isAuthenticated: true,
         loading: false,
         user: payload
+      };
+
+    case UPDATE_FOLLOW:
+      return {
+        ...state,
+        loading: false,
+        user: { ...state.user, following: payload }
+      };
+
+    case FOLLOW_ERROR:
+      return {
+        ...state,
+        loading: false
       };
 
     default:

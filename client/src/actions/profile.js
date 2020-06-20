@@ -7,7 +7,9 @@ import {
   DELETE_ACCOUNT,
   CLEAR_PROFILE,
   GET_PROFILES,
-  GET_PROFILE_BY_ID
+  GET_PROFILE_BY_ID,
+  FOLLOW_USER,
+  UNFOLLOW_USER
 } from './index';
 import axios from 'axios';
 import { setAlert } from './alert';

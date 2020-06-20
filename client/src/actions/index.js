@@ -17,3 +17,5 @@ export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const GET_PROFILES = 'GET_PROFILES';
 export const GET_PROFILE_BY_ID = 'GET_PROFILE_BY_ID';
+export const UPDATE_FOLLOW = 'UPDATE_FOLLOW';
+export const FOLLOW_ERROR = 'FOLLOW_ERROR';

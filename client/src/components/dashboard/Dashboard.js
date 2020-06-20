@@ -73,27 +73,29 @@ function Dashboard({
                 </Fab>
               </Fragment>
             ) : (
-              <Fragment className='div-bottom'>
-                <p className='mt-3'>
-                  You have not set up a profile, Please add some info
-                </p>
-                <Zoom in={true}>
-                  <Fab
-                    className='mt-3'
-                    variant='extended'
-                    style={{
-                      backgroundColor: '#8c52ff',
-                      padding: '8px 30px'
-                    }}
-                  >
-                    <Link
-                      to='/create-profile'
-                      style={{ color: '#fff', textDecoration: 'none' }}
+              <Fragment>
+                <div className='div-bottom'>
+                  <p className='mt-3'>
+                    You have not set up a profile, Please add some info
+                  </p>
+                  <Zoom in={true}>
+                    <Fab
+                      className='mt-3'
+                      variant='extended'
+                      style={{
+                        backgroundColor: '#8c52ff',
+                        padding: '8px 30px'
+                      }}
                     >
-                      Create Profile
-                    </Link>
-                  </Fab>
-                </Zoom>
+                      <Link
+                        to='/create-profile'
+                        style={{ color: '#fff', textDecoration: 'none' }}
+                      >
+                        Create Profile
+                      </Link>
+                    </Fab>
+                  </Zoom>
+                </div>
               </Fragment>
             )}
           </div>

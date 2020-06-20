@@ -105,10 +105,11 @@ router.put('/follow/:user_id', auth, async (req, res) => {
       'followers',
       'name'
     ]);
-    // check if user has been followed
+    // check if main user is following the other user
     if (
-      user.following.filter((follow) => follow.user.toString() === req.user.id)
-        .length > 0
+      userMain.following.filter(
+        (follow) => follow.user.toString() === req.params.user_id
+      ).length > 0
     ) {
       return res.status(400).json({ msg: 'you already follow user' });
     }
@@ -172,7 +173,7 @@ router.put('/unfollow/:user_id', auth, async (req, res) => {
     await user.save();
     await userMain.save();
 
-    res.json(user.following);
+    res.json(userMain.following);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

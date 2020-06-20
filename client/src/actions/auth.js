@@ -6,7 +6,10 @@ import {
   LOGIN_FAIL,
   LOAD_USER,
   AUTH_ERROR,
-  CLEAR_PROFILE
+  CLEAR_PROFILE,
+  UPDATE_FOLLOW,
+  FOLLOW_ERROR,
+  UNFOLLOW_USER
 } from './index';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -117,4 +120,29 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: CLEAR_PROFILE
   });
+};
+
+// follow a user
+export const follow = (user_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/user/follow/${user_id}`);
+
+    dispatch({ type: UPDATE_FOLLOW, payload: res.data });
+  } catch (err) {
+    dispatch({ type: FOLLOW_ERROR });
+  }
+};
+
+// unfollow a user
+export const unfollow = (user_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/user/unfollow/${user_id}`);
+
+    dispatch({
+      type: UPDATE_FOLLOW,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({ type: FOLLOW_ERROR });
+  }
 };

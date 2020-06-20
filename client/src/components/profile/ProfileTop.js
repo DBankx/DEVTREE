@@ -7,8 +7,16 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LanguageIcon from '@material-ui/icons/Language';
 import YoutubeIcon from '@material-ui/icons/YouTube';
+import { follow, unfollow } from '../../actions/auth';
+import { connect } from 'react-redux';
 
-const ProfileTop = ({ profile, auth }) => {
+const ProfileTop = ({ profile, auth, follow, unfollow }) => {
+  // checks if user is following the other user
+
+  const isFollowing = auth.user.following.find(
+    (flw) => flw.user === profile.user._id
+  );
+
   return (
     <div className='profile-top'>
       <div className='profile-image'>
@@ -17,9 +25,27 @@ const ProfileTop = ({ profile, auth }) => {
           <h1>{profile.user.username}</h1>
           <h3 className='mt-2'>{profile.status}</h3>
           {auth.isAuthenticated ? (
-            <Zoom in={true}>
-              <Fab variant='extended'>Follow</Fab>
-            </Zoom>
+            isFollowing == null ? (
+              <Zoom in={true}>
+                <Fab
+                  variant='extended'
+                  onClick={() => follow(profile.user._id)}
+                  style={{ outline: 'none' }}
+                >
+                  Follow
+                </Fab>
+              </Zoom>
+            ) : (
+              <Zoom in={true}>
+                <Fab
+                  variant='extended'
+                  style={{ outline: 'none' }}
+                  onClick={() => unfollow(profile.user._id)}
+                >
+                  UnFollow
+                </Fab>
+              </Zoom>
+            )
           ) : null}
 
           <ul className='links mt-4'>
@@ -90,7 +116,37 @@ const ProfileTop = ({ profile, auth }) => {
 
 ProfileTop.propTypes = {
   profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  follow: PropTypes.func.isRequired,
+  unfollow: PropTypes.func.isRequired
 };
 
-export default ProfileTop;
+export default connect(null, { follow, unfollow })(ProfileTop);
+
+// auth.user.following.map((flw) => {
+//   if (flw.user === profile.user._id) {
+//     return (
+//       <Zoom in={true}>
+//         <Fab
+//           variant='extended'
+//           style={{ outline: 'none' }}
+//           onClick={() => unfollow(profile.user._id)}
+//         >
+//           UnFollow
+//         </Fab>
+//       </Zoom>
+//     );
+//   } else {
+//     return (
+//       <Zoom in={true}>
+//         <Fab
+//           variant='extended'
+//           onClick={() => follow(profile.user._id)}
+//           style={{ outline: 'none' }}
+//         >
+//           Follow
+//         </Fab>
+//       </Zoom>
+//     );
+//   }
+// })
