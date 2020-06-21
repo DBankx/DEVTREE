@@ -11,11 +11,20 @@ import { follow, unfollow } from '../../actions/auth';
 import { connect } from 'react-redux';
 
 const ProfileTop = ({ profile, auth, follow, unfollow }) => {
-  // checks if user is following the other user
+  // function that checks if a user is following someone depending if the use is authenticated or not
+  var isFollowing;
 
-  const isFollowing = auth.user.following.find(
-    (flw) => flw.user === profile.user._id
-  );
+  function getIsFollowing() {
+    if (auth.isAuthenticated == true) {
+      isFollowing = auth.user.following.find(
+        (flw) => flw.user === profile.user._id
+      );
+    } else {
+      isFollowing = null;
+    }
+  }
+
+  getIsFollowing();
 
   return (
     <div className='profile-top'>
@@ -116,37 +125,9 @@ const ProfileTop = ({ profile, auth, follow, unfollow }) => {
 
 ProfileTop.propTypes = {
   profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.object,
   follow: PropTypes.func.isRequired,
   unfollow: PropTypes.func.isRequired
 };
 
 export default connect(null, { follow, unfollow })(ProfileTop);
-
-// auth.user.following.map((flw) => {
-//   if (flw.user === profile.user._id) {
-//     return (
-//       <Zoom in={true}>
-//         <Fab
-//           variant='extended'
-//           style={{ outline: 'none' }}
-//           onClick={() => unfollow(profile.user._id)}
-//         >
-//           UnFollow
-//         </Fab>
-//       </Zoom>
-//     );
-//   } else {
-//     return (
-//       <Zoom in={true}>
-//         <Fab
-//           variant='extended'
-//           onClick={() => follow(profile.user._id)}
-//           style={{ outline: 'none' }}
-//         >
-//           Follow
-//         </Fab>
-//       </Zoom>
-//     );
-//   }
-// })

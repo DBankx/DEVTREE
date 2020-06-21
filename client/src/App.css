@@ -40,7 +40,7 @@ main {
   position: fixed;
   background-color: #fff;
   transition: width 200ms ease;
-  z-index: 10;
+  z-index: 100;
 }
 
 .navigation .navi-nav {
@@ -123,7 +123,7 @@ main {
 @media (max-width: 600px) {
   .navigation {
     bottom: 0;
-    width: 100vw;
+    width: 100%;
     height: 5rem;
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.6);
   }
@@ -146,6 +146,10 @@ main {
     margin: 0;
   }
 
+  .landing {
+    margin-bottom: 5rem;
+  }
+
   .next {
     margin-bottom: 5rem;
   }
@@ -158,12 +162,9 @@ main {
   .navigation {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
     width: 5rem;
-    height: 100vh;
+    height: 100%;
     top: 0;
   }
-  /* .navigation .navi-link {
-    filter: grayscale(100%) opacity(0.7);
-  } */
   .navigation .navi-link:hover {
     filter: grayscale(0%) opacity(1);
     background: #603cc9;
@@ -397,7 +398,6 @@ main {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
   margin-left: 5em;
 }
 
@@ -414,36 +414,64 @@ main {
   margin-right: 1em;
 }
 
-.prof {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+.profile-links {
+  list-style: none;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  grid-gap: 1em;
+  height: 100%;
 }
 
-.prof.chevron {
-  margin-left: -30px;
+.profile-links li {
   padding: 0;
+  margin: 0;
 }
 
 @media (max-width: 600px) {
   .navigation2 {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: flex-end;
   }
   .navi2 .optional {
     display: none;
+  }
+
+  .navigation2 .navi2 {
+    margin-left: 0em;
+    height: 5rem;
+    align-items: center;
+  }
+
+  .navigation2 .navi2 li {
+    padding: 0 0px;
+    margin: 1em;
+    text-align: center;
+  }
+
+  .profile-links {
+    margin: 0;
+  }
+
+  .profile-links li {
+    margin: 0;
+    padding: 0 10px;
   }
 }
 
 @media (min-width: 600px) {
   .navigation2 {
-    margin-left: 5rem;
-    width: 95%;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
+  }
+
+  .profile-links {
+    margin-right: 2em;
+  }
+
+  .profile-links li {
+    padding: 0 10px;
   }
 }
 
@@ -746,15 +774,17 @@ main {
   font-weight: 600;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 630px) {
   .profile-top {
     border-radius: 30px;
     height: 500px;
     width: 100%;
+    padding-left: 0;
   }
   .profile-top .profile-image {
     display: block;
     text-align: center;
+    margin: 0 auto;
   }
   .img-words {
     padding: 0;
@@ -1149,4 +1179,9 @@ small {
 
 .main-profile table td {
   padding: 1em 15px;
+}
+
+.chevron {
+  margin-right: auto;
+  cursor: pointer;
 }

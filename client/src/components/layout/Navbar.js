@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 
-const Navbar = ({ auth: { isAuthenticated }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
   const guestLinks = (
     <Zoom in={true}>
       <ul className='navi-nav'>
@@ -57,7 +57,7 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
             <span className='link-text'>Contact</span>
           </Link>
         </li>
-        <li className='navi-item'>
+        <li className='navi-item hide-sm'>
           <Link to='/about' className='navi-link'>
             <InfoTwoToneIcon className='fas' />
             <span className='link-text'>About</span>
@@ -95,12 +95,12 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
         </Link>
       </li>
       <li className='navi-item'>
-        <Link to='/profile' className='navi-link'>
+        <Link to={`/profile/${user && user._id}`} className='navi-link'>
           <AccountCircleTwoToneIcon className='fas' />
           <span className='link-text'>Profile</span>
         </Link>
       </li>
-      <li className='navi-item'>
+      <li className='navi-item hide-sm'>
         <a href='#' onClick={() => logout()} className='navi-link'>
           <Zoom in={true}>
             <Fab onClick={() => logout()} className='logout-button'>
