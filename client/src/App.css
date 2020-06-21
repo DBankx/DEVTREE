@@ -930,11 +930,6 @@ main {
   width: 100%;
 }
 
-.posts-area .post-form img {
-  width: 100px;
-  height: 100px;
-}
-
 .posts-area .post-form .post-body {
   width: 100%;
   margin-left: 1em;
@@ -994,11 +989,6 @@ main {
   border-bottom: 0px;
 }
 
-.posts-area .post img {
-  width: 100px;
-  height: 100px;
-}
-
 .posts-area .post .post-content {
   margin-left: 1em;
 }
@@ -1025,7 +1015,8 @@ main {
 }
 
 .posts-area .post .post-content .trigger-bottom li {
-  padding: 0;
+  padding: 0 10px;
+  text-align: center;
 }
 
 .posts-area .post .post-content .trigger-bottom li .fas {
@@ -1078,6 +1069,10 @@ main {
   }
   .posts-area .post .post-content {
     margin-left: 0;
+  }
+
+  .posts-area .posts-section .post .feed-avatar {
+    margin: 0 auto;
   }
   .posts-area .post .trigger-bottom {
     justify-content: flex-start;

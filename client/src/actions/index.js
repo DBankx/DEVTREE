@@ -19,3 +19,7 @@ export const GET_PROFILES = 'GET_PROFILES';
 export const GET_PROFILE_BY_ID = 'GET_PROFILE_BY_ID';
 export const UPDATE_FOLLOW = 'UPDATE_FOLLOW';
 export const FOLLOW_ERROR = 'FOLLOW_ERROR';
+export const GET_POSTS = 'GET_POSTS';
+export const POST_ERROR = 'POST_ERROR';
+export const MAKE_POST = 'MAKE_POST';
+export const UPDATE_LIKES = 'UPDATE_LIKES';

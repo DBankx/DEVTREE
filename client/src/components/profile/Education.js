@@ -10,7 +10,7 @@ const Education = ({ profile }) => {
           <h3>Education</h3>
           {profile.education.map((edu) => {
             return (
-              <div className='edu-sec'>
+              <div className='edu-sec' key={edu._id}>
                 <h4>{edu.school}</h4>
                 <p className='mt-2'>
                   <Moment format='YYYY/MM/DD'>{edu.from}</Moment> -{' '}
