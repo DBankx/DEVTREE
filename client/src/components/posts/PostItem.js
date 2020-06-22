@@ -4,14 +4,19 @@ import Avatar from '@material-ui/core/Avatar';
 import Moment from 'react-moment';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom';
-import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { addLike, removeLike } from '../../actions/post';
+import { addLike, removeLike, deletePost } from '../../actions/post';
 import { connect } from 'react-redux';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const PostItem = ({ post, auth: { user }, addLike, removeLike }) => {
+const PostItem = ({
+  post,
+  auth: { user },
+  addLike,
+  removeLike,
+  deletePost
+}) => {
   // checks if user has liked a certain post
 
   var isLiked;
@@ -39,7 +44,11 @@ const PostItem = ({ post, auth: { user }, addLike, removeLike }) => {
             <Moment format='YYYY/MM/DD'>{post.date}</Moment>
           </li>
         </ul>
-        <p>{post.text}</p>
+        <div className='post-text-area'>
+          <Link className='post-text' to={`/post/${post._id}`}>
+            {post.text}
+          </Link>
+        </div>
         <ul className='trigger-bottom'>
           <li>
             {isLiked == null ? (
@@ -53,19 +62,26 @@ const PostItem = ({ post, auth: { user }, addLike, removeLike }) => {
                 onClick={() => removeLike(post._id)}
               />
             )}{' '}
-            <span>{post.likes.length > 0 ? post.likes.length : null}</span>
+            <span>
+              {post && post.likes.length > 0 ? post.likes.length : null}
+            </span>
           </li>
           <li>
             <a href='comments.html'>
-              Comment{' '}
-              {post.comments.length > 0 ? `(${post.comments.length})` : null}
+              Comment
+              {post && post.comments.length > 0
+                ? `s (${post.comments.length})`
+                : null}
             </a>
           </li>
           {/* checking if the post was made by the user */}
           {post.user === user._id ? (
             <li>
               <Zoom in={true}>
-                <DeleteIcon style={{ color: '#333' }} />
+                <DeleteIcon
+                  style={{ color: 'rgb(100, 100, 100)' }}
+                  onClick={() => deletePost(post && post._id)}
+                />
               </Zoom>
             </li>
           ) : null}
@@ -77,11 +93,14 @@ const PostItem = ({ post, auth: { user }, addLike, removeLike }) => {
 
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired
 };
 
 const mapState = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapState, { addLike, removeLike })(PostItem);
+export default connect(mapState, { addLike, removeLike, deletePost })(PostItem);

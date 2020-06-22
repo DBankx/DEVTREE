@@ -150,7 +150,7 @@ router.put('/unlike/:post_id', auth, async (req, res) => {
 });
 
 // add a comment
-router.put(
+router.post(
   '/comment/:post_id',
   [auth, [check('text', 'Text is required').not().isEmpty()]],
   async (req, res) => {

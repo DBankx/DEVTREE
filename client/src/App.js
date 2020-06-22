@@ -19,6 +19,7 @@ import CreateProfile from './components/profile-forms/CreateProfile';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 
 function App() {
   // load the user from the backend immideatly
@@ -58,6 +59,7 @@ function App() {
 
               <Route exact path='/profile/:id' component={Profile} />
               <PrivateRoute exact path='/feed' component={Posts} />
+              <PrivateRoute exact path='/post/:id' component={Post} />
             </Switch>
           </main>
         </Fragment>

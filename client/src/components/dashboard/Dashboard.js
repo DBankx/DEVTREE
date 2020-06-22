@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Fab from '@material-ui/core/Fab';
-import FaceIcon from '@material-ui/icons/Face';
 import Education from './Education';
 import Zoom from '@material-ui/core/Zoom';
 
@@ -36,8 +35,7 @@ function Dashboard({
           <div className='greeting'>
             <h2>Dashboard</h2>
             <h3>
-              <FaceIcon style={{ fontSize: '20px' }} /> Welcome back{' '}
-              <strong>{user && user.username}</strong>
+              Welcome <strong>{user && user.username}</strong>
             </h3>
           </div>
           <div className='dashboard'>

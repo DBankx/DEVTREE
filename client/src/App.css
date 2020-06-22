@@ -969,6 +969,18 @@ main {
   outline: none;
 }
 
+.post-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.post-btn p {
+  margin-right: 1em;
+  margin-top: 2em;
+  font-weight: 600;
+}
+
 .posts-area .post-form .post-body button:hover {
   background-color: #8164d4;
 }
@@ -1012,6 +1024,7 @@ main {
   display: flex;
   align-items: center;
   list-style: none;
+  margin-top: 1em;
 }
 
 .posts-area .post .post-content .trigger-bottom li {
@@ -1053,6 +1066,10 @@ main {
 }
 
 @media (max-width: 600px) {
+  .post-profile {
+    display: none;
+  }
+
   .posts-area .post-form {
     display: block;
   }
@@ -1179,4 +1196,101 @@ small {
 .chevron {
   margin-right: auto;
   cursor: pointer;
+}
+
+.post-text {
+  text-decoration: none;
+  color: #000;
+}
+
+.post-text:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+.post-text-area:hover {
+  background-color: rgb(247, 247, 247);
+}
+
+/* single post styling */
+
+.post-word {
+  margin-top: 3em;
+  border: 1.5px solid #ddd;
+  border-bottom: 0;
+  border-top: 0;
+  padding: 1em;
+}
+
+.word {
+  margin-top: 0.6em;
+}
+
+.post-word-top {
+  display: flex;
+  align-items: center;
+}
+
+.post-word-top p {
+  font-weight: 800;
+  margin-left: 1em;
+}
+
+.bottom-info ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.bottom-info ul li {
+  padding: 0 5px;
+}
+
+@media (max-width: 600px) {
+  .post-word .word {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .post-word .word {
+    font-size: 2rem;
+    font-weight: lighter;
+  }
+}
+
+.bottom-trigger {
+  width: 100%;
+  border: 1.5px solid rgb(235, 233, 233);
+  border-left: 0;
+  border-right: 0;
+}
+
+.bottom-trigger ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding-top: 1em;
+}
+
+.bottom-trigger li {
+  padding: 0 10px;
+}
+
+.comment-form {
+  margin-top: 2em;
+}
+
+.comment-form button {
+  margin-top: 1em;
+  background-color: #8164d4;
+  color: #fff;
+  outline: none;
+}
+
+.comment-form button:hover {
+  background-color: #8c52ff;
+  color: #fff;
+  transition: 600ms;
 }

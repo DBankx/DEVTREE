@@ -16,6 +16,7 @@ const PostForm = ({ user, createPost }) => {
   return (
     <div className='post-form'>
       <Avatar
+        className='post-profile'
         src={user && user.avatar}
         alt='user image'
         style={{ width: '100px', height: '100px' }}
@@ -25,6 +26,7 @@ const PostForm = ({ user, createPost }) => {
           onSubmit={(e) => {
             createPost({ text });
             e.preventDefault();
+            setText('');
           }}
         >
           <textarea
@@ -35,6 +37,7 @@ const PostForm = ({ user, createPost }) => {
             onChange={handleChange}
           ></textarea>
           <div className='post-btn'>
+            <p>{text.length > 0 ? text.length : null}</p>
             <Zoom in={true}>
               <Fab variant='extended' type='submit'>
                 Post
