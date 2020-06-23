@@ -4,27 +4,24 @@ import Avatar from '@material-ui/core/Avatar';
 import Moment from 'react-moment';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addLike, removeLike, deletePost } from '../../actions/post';
+import { addLike2, removeLike2, deletePost } from '../../actions/post';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { getPostById } from '../../actions/post';
 import Zoom from '@material-ui/core/Zoom';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const PostTop = ({ post, addLike, removeLike, user, history, deletePost }) => {
-  useEffect(() => {
-    async function getPost() {
-      await user;
-      getPostById(post._id);
-    }
-
-    getPost();
-  }, [getPostById]);
-
+const PostTop = ({
+  post,
+  addLike2,
+  removeLike2,
+  user,
+  history,
+  deletePost
+}) => {
   var isLiked;
 
   async function getLiked() {
-    if (user !== null) {
+    if (user) {
       isLiked = post.likes.find((like) => like.user === user._id);
     } else {
       isLiked = null;
@@ -66,25 +63,25 @@ const PostTop = ({ post, addLike, removeLike, user, history, deletePost }) => {
             {isLiked == null ? (
               <FavoriteBorderIcon
                 style={{ color: '#cccccc' }}
-                onClick={() => addLike(post && post._id)}
+                onClick={() => addLike2(post && post._id)}
               />
             ) : (
               <FavoriteIcon
                 style={{ color: 'rgb(202, 70, 70)' }}
-                onClick={() => removeLike(post && post._id)}
+                onClick={() => removeLike2(post && post._id)}
               />
             )}{' '}
           </li>
           <li>
-            {post.comments.length > 0
+            {post && post.comments.length > 0
               ? `${post && post.comments.length} Comments`
               : 'No comments yet'}
           </li>
-          {post.user === user._id ? (
+          {post && user && post.user === user._id ? (
             <li>
               <Zoom in={true}>
                 <DeleteIcon
-                  style={{ color: 'rgb(100, 100, 100)' }}
+                  className='del-btn'
                   onClick={() => {
                     deletePost(post && post._id);
                     history.push('/feed');
@@ -101,11 +98,11 @@ const PostTop = ({ post, addLike, removeLike, user, history, deletePost }) => {
 
 PostTop.propTypes = {
   post: PropTypes.object.isRequired,
-  addLike: PropTypes.func.isRequired,
-  removeLike: PropTypes.func.isRequired,
+  addLike2: PropTypes.func.isRequired,
+  removeLike2: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired
 };
 
-export default connect(null, { addLike, removeLike, deletePost })(
+export default connect(null, { addLike2, removeLike2, deletePost })(
   withRouter(PostTop)
 );

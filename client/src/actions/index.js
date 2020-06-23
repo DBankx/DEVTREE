@@ -26,3 +26,6 @@ export const UPDATE_LIKES = 'UPDATE_LIKES';
 export const DELETE_POST = 'DELETE_POST';
 export const GET_POST = 'GET_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const UPDATE_LIKES2 = 'UPDATE_LIKES2';
+export const FIND_PROFILE = 'FIND_PROFILE';

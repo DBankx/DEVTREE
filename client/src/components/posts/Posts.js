@@ -27,13 +27,14 @@ const Posts = ({ post, getAllPosts, auth: { user } }) => {
             Feed <MarkunreadMailboxIcon />
           </h1>
           <div className='posts-area'>
-            <PostForm user={user} />
+            <PostForm user={user && user} />
 
             <hr></hr>
             <div className='posts-section'>
-              {post.posts.map((post) => {
-                return <PostItem key={post._id} post={post} />;
-              })}
+              {post &&
+                post.posts.map((post) => {
+                  return <PostItem key={post._id} post={post} />;
+                })}
             </div>
           </div>
         </div>

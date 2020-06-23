@@ -28,14 +28,22 @@ const Post = ({
     <div className='next'>
       {post !== null && loading === false ? (
         <div className='single-post'>
-          <Link to='/feed'>
+          <Link to='/feed' style={{ textDecoration: 'none' }}>
             <KeyboardBackspaceIcon /> Back to Feed
           </Link>
           <PostTop post={post} user={user} />
           <CommentForm post={post} />
-          {post.comments.map((comment) => {
-            return <Comment key={comment._id} comment={comment} />;
-          })}
+          <div className='comments-post'>
+            {post.comments.length > 0 ? (
+              post.comments.map((comment) => {
+                return (
+                  <Comment key={comment._id} comment={comment} post={post} />
+                );
+              })
+            ) : (
+              <p>No comments on this post</p>
+            )}
+          </div>
         </div>
       ) : (
         <Spinner />

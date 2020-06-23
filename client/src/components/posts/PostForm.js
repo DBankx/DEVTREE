@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createPost } from '../../actions/post';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
+import { Link } from 'react-router-dom';
 
 const PostForm = ({ user, createPost }) => {
   const [text, setText] = useState('');
@@ -15,12 +16,17 @@ const PostForm = ({ user, createPost }) => {
 
   return (
     <div className='post-form'>
-      <Avatar
-        className='post-profile'
-        src={user && user.avatar}
-        alt='user image'
-        style={{ width: '100px', height: '100px' }}
-      />
+      <Link to={`/profile/${user && user._id}`}>
+        <Avatar
+          className='post-profile'
+          src={user && user.avatar}
+          alt='user image'
+          style={{
+            width: '100px',
+            height: '100px'
+          }}
+        />
+      </Link>
       <div className='post-body'>
         <form
           onSubmit={(e) => {

@@ -7,9 +7,7 @@ import {
   DELETE_ACCOUNT,
   CLEAR_PROFILE,
   GET_PROFILES,
-  GET_PROFILE_BY_ID,
-  FOLLOW_USER,
-  UNFOLLOW_USER
+  FIND_PROFILE
 } from './index';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -232,6 +230,26 @@ export const getProfileById = (user_id) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+// get profile by username
+export const getProfileByUsername = (username) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.post(`/api/profile/find`, username, config);
+
+    dispatch({ type: FIND_PROFILE, payload: res.data });
+  } catch (err) {
+    dispatch({
+      type: FIND_PROFILE,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }

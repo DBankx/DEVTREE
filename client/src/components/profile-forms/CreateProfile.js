@@ -38,7 +38,7 @@ const CreateProfile = ({
     youtube: '',
     twitter: '',
     instagram: '',
-    facebook: 'facebook',
+    facebook: '',
     linkedin: ''
   });
 
@@ -123,8 +123,8 @@ const CreateProfile = ({
                     Full Stack Developer
                   </MenuItem>
                   <MenuItem value='UI/UX Designer'>UI/UX Designer</MenuItem>
-                  <MenuItem value='Mobile Applications Developer'>
-                    Mobile Applications Developer
+                  <MenuItem value='Mobile App Developer'>
+                    Mobile App Developer
                   </MenuItem>
                   <MenuItem value='Game Developer'>Game Developer</MenuItem>
                   <MenuItem value='Cyber Security Specialist'>

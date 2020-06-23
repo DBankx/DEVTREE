@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator/check');
 const Post = require('../../models/Post');
 const request = require('request');
 
-// gets the profile
+// gets the users profile
 router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
@@ -48,6 +48,8 @@ router.post(
       res.status(400).json({ errors: errors.array() });
     }
 
+    const user = await User.findById(req.user.id).select('-password');
+
     const {
       company,
       location,
@@ -68,6 +70,7 @@ router.post(
     const profileFields = {};
     profileFields.user = req.user.id;
     if (company) profileFields.company = company;
+    profileFields.username = user.username;
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
     if (githubusername) profileFields.githubusername = githubusername;
@@ -123,6 +126,30 @@ router.get('/', async (req, res) => {
     ]);
 
     res.json(profiles);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// get profile by username
+router.post('/find', async (req, res) => {
+  try {
+    const profile = await Profile.find({
+      username: { $regex: req.body.username, $options: 'i' }
+    }).populate('user', [
+      'avatar',
+      'name',
+      'username',
+      'following',
+      'followers'
+    ]);
+
+    if (!profile) {
+      res.status(400).json({ msg: 'profile not found' });
+    }
+
+    res.json(profile);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

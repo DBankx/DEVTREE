@@ -5,7 +5,9 @@ import {
   UPDATE_LIKES,
   DELETE_POST,
   GET_POST,
-  ADD_COMMENT
+  ADD_COMMENT,
+  DELETE_COMMENT,
+  UPDATE_LIKES2
 } from './index';
 import { setAlert } from './alert';
 import axios from 'axios';
@@ -131,9 +133,64 @@ export const addComment = (formData, postId) => async (dispatch) => {
       config
     );
 
-    dispatch(setAlert('Comment Posted', 'success'));
-
     dispatch({ type: ADD_COMMENT, payload: res.data });
+
+    dispatch(setAlert('Comment Posted', 'success'));
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.data }
+    });
+  }
+};
+
+// delete a comment
+export const deleteComment = (postId, commentId) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
+
+    dispatch({
+      type: DELETE_COMMENT,
+      payload: commentId
+    });
+
+    dispatch(setAlert('Comment Deleted', 'success'));
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.data }
+    });
+
+    dispatch(setAlert('Error occured', 'error'));
+  }
+};
+
+// update likes on a single post
+export const addLike2 = (postId) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/posts/like/${postId}`);
+
+    dispatch({
+      type: UPDATE_LIKES2,
+      payload: { postId, likes: res.data }
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.data }
+    });
+  }
+};
+
+// remove likes for a single post
+export const removeLike2 = (postId) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/posts/unlike/${postId}`);
+
+    dispatch({
+      type: UPDATE_LIKES2,
+      payload: { postId, likes: res.data }
+    });
   } catch (err) {
     dispatch({
       type: POST_ERROR,

@@ -33,7 +33,7 @@ const PostItem = ({
 
   return (
     <div className='post'>
-      <Link to={`/profile/${post.user}`}>
+      <Link to={`/profile/${post && post.user}`}>
         <Avatar className='feed-avatar' src={post.avatar} alt='user image' />
       </Link>
       <div className='post-content'>
@@ -41,7 +41,7 @@ const PostItem = ({
           <li>{post.username}</li>
           <li>•</li>
           <li>
-            <Moment format='YYYY/MM/DD'>{post.date}</Moment>
+            <Moment fromNow>{post.date}</Moment>
           </li>
         </ul>
         <div className='post-text-area'>
@@ -54,12 +54,12 @@ const PostItem = ({
             {isLiked == null ? (
               <FavoriteBorderIcon
                 style={{ color: '#cccccc' }}
-                onClick={() => addLike(post._id)}
+                onClick={() => addLike(post && post._id)}
               />
             ) : (
               <FavoriteIcon
                 style={{ color: 'rgb(202, 70, 70)' }}
-                onClick={() => removeLike(post._id)}
+                onClick={() => removeLike(post && post._id)}
               />
             )}{' '}
             <span>
@@ -67,19 +67,19 @@ const PostItem = ({
             </span>
           </li>
           <li>
-            <a href='comments.html'>
+            <Link to={`/post/${post && post._id}`}>
               Comment
               {post && post.comments.length > 0
                 ? `s (${post.comments.length})`
                 : null}
-            </a>
+            </Link>
           </li>
           {/* checking if the post was made by the user */}
           {post.user === user._id ? (
             <li>
               <Zoom in={true}>
                 <DeleteIcon
-                  style={{ color: 'rgb(100, 100, 100)' }}
+                  className='del-btn'
                   onClick={() => deletePost(post && post._id)}
                 />
               </Zoom>

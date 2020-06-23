@@ -128,7 +128,7 @@ const Education = ({ addEducation, history }) => {
                 checked={current}
               />
             </li>
-            <li>Current Job?</li>
+            <li>Current School?</li>
           </ul>
 
           <div className='input-box mb-3'>

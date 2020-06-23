@@ -5,7 +5,9 @@ import {
   UPDATE_LIKES,
   DELETE_POST,
   GET_POST,
-  ADD_COMMENT
+  ADD_COMMENT,
+  DELETE_COMMENT,
+  UPDATE_LIKES2
 } from '../actions/index';
 
 const initialState = {
@@ -67,7 +69,26 @@ const post = (state = initialState, action) => {
     case ADD_COMMENT:
       return {
         ...state,
-        post: { ...state.post, comment: payload },
+        post: { ...state.post, comments: payload },
+        loading: false
+      };
+
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: state.post.comments.filter(
+            (comment) => comment._id !== payload
+          )
+        },
+        loading: false
+      };
+
+    case UPDATE_LIKES2:
+      return {
+        ...state,
+        post: { ...state.post, likes: payload.likes },
         loading: false
       };
 
