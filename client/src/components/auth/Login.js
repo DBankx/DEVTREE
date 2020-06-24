@@ -21,6 +21,8 @@ const Login = ({ login, auth: { isAuthenticated } }) => {
     password: ''
   });
 
+  const [click, setClick] = useState(false);
+
   const { username, password } = formData;
 
   function handleFormData(e) {
@@ -54,6 +56,7 @@ const Login = ({ login, auth: { isAuthenticated } }) => {
               onSubmit={(e) => {
                 e.preventDefault();
                 login({ username: username, password: password });
+                setClick(true);
               }}
             >
               <FormControl className='mb-4'>
@@ -93,7 +96,7 @@ const Login = ({ login, auth: { isAuthenticated } }) => {
 
               <Zoom in={true}>
                 <Fab type='submit' variant='extended'>
-                  Login
+                  {click ? 'Loading' : 'Login'}
                 </Fab>
               </Zoom>
             </form>

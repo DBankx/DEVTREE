@@ -105,17 +105,17 @@ export const login = ({ username, password }) => async (dispatch) => {
     dispatch({
       type: LOGIN_FAIL
     });
-
-    dispatch(setAlert('Login Error', 'error'));
   }
 };
 
 // logout user
 
-export const logout = () => (dispatch) => {
+export const logout = (history) => (dispatch) => {
   dispatch({
     type: LOGOUT
   });
+
+  history.push('/login');
 
   dispatch({
     type: CLEAR_PROFILE

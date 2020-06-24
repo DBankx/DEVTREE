@@ -6,9 +6,13 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { logout } from '../../actions/auth';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-const Navbar2 = ({ auth: { isAuthenticated, user, loading }, logout }) => {
+const Navbar2 = ({
+  auth: { isAuthenticated, user, loading },
+  logout,
+  history
+}) => {
   const today = new Date();
   const options = {
     weekday: 'short',
@@ -96,7 +100,7 @@ const Navbar2 = ({ auth: { isAuthenticated, user, loading }, logout }) => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    logout();
+                    logout(history);
                     handleClose();
                   }}
                 >
@@ -120,4 +124,4 @@ const mapState = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapState, { logout })(Navbar2);
+export default connect(mapState, { logout })(withRouter(Navbar2));

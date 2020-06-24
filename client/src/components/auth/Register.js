@@ -18,6 +18,8 @@ const Register = ({ registerUser, auth: { isAuthenticated } }) => {
     password: ''
   });
 
+  const [clicked, setClicked] = useState(false);
+
   const { name, date, username, email, password } = formData;
 
   function handleFormData(e) {
@@ -98,8 +100,12 @@ const Register = ({ registerUser, auth: { isAuthenticated } }) => {
                 onChange={handleFormData}
               />
               <Zoom in={true}>
-                <Fab type='submit' variant='extended'>
-                  Register
+                <Fab
+                  type='submit'
+                  variant='extended'
+                  onClick={() => setClicked(!clicked)}
+                >
+                  {clicked ? 'Loading' : 'Register'}
                 </Fab>
               </Zoom>
             </form>

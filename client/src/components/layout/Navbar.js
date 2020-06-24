@@ -12,11 +12,11 @@ import MarkunreadMailboxTwoToneIcon from '@material-ui/icons/MarkunreadMailboxTw
 import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
 import ContactSupportTwoToneIcon from '@material-ui/icons/ContactSupportTwoTone';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 
-const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, user }, logout, history }) => {
   const guestLinks = (
     <Zoom in={true}>
       <ul className='navi-nav'>
@@ -101,9 +101,9 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
         </Link>
       </li>
       <li className='navi-item hide-sm'>
-        <a href='#' onClick={() => logout()} className='navi-link'>
+        <a href='#' onClick={() => logout(history)} className='navi-link'>
           <Zoom in={true}>
-            <Fab onClick={() => logout()} className='logout-button'>
+            <Fab onClick={() => logout(history)} className='logout-button'>
               <PowerSettingsNewTwoToneIcon className='fas2' />
             </Fab>
           </Zoom>
@@ -126,4 +126,4 @@ const mapState = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapState, { logout })(Navbar);
+export default connect(mapState, { logout })(withRouter(Navbar));

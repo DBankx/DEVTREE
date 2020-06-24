@@ -13,6 +13,10 @@ body {
   overflow-x: hidden;
 }
 
+.post:hover {
+  background-color: rgb(247, 245, 245);
+}
+
 body::-webkit-scrollbar {
   width: 0.25rem;
 }
@@ -341,6 +345,8 @@ main {
     grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
   }
   .register-box .p2 {
     margin-top: 3%;
@@ -912,6 +918,11 @@ main {
   .github-repos {
     padding: 1em;
   }
+
+  .github-repos .repo {
+    margin-left: 0;
+  }
+
   .github-repos .repo {
     display: block;
   }
@@ -1375,4 +1386,45 @@ small {
   left: 50%;
   transform: translate(-50%, -50%);
   color: rgb(192, 192, 192);
+  width: 100%;
+  text-align: center;
+}
+
+.error-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+}
+
+.error-text p {
+  font-weight: 1.25rem;
+  color: rgb(190, 190, 190);
+  font-weight: 600;
+}
+
+.error-text button {
+  background-color: #603cc9;
+  outline: none;
+}
+
+.error-text button a {
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+}
+
+.error-text button:hover {
+  background-color: #8c52ff;
+}
+
+.post-link {
+  text-decoration: none;
+}
+
+.post_link:hover {
+  text-decoration: none;
 }

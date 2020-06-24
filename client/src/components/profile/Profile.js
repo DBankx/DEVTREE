@@ -8,6 +8,9 @@ import Profilebio from './Profilebio';
 import ProfileSkills from './ProfileSkills';
 import Experience from './Experience';
 import Education from './Education';
+import Fab from '@material-ui/core/Fab';
+import Zoom from '@material-ui/core/Zoom';
+import { Link } from 'react-router-dom';
 
 const Profile = ({
   getProfileById,
@@ -22,7 +25,20 @@ const Profile = ({
   return (
     <Fragment>
       {profile === null || loading ? (
-        <Spinner />
+        profile === null && loading === false ? (
+          <div className='next'>
+            <div className='error-text'>
+              <p>You have not set up your profile yet</p>
+              <Zoom in={true}>
+                <Fab variant='extended'>
+                  <Link to='/create-profile'>Create Profile</Link>
+                </Fab>
+              </Zoom>
+            </div>
+          </div>
+        ) : (
+          <Spinner />
+        )
       ) : (
         <div className='next'>
           <div className='profile'>
