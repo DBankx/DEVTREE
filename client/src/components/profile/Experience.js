@@ -13,9 +13,9 @@ const Experience = ({ profile }) => {
               <div className='exp-sec' key={exp._id}>
                 <h4>{exp.company}</h4>
                 <p className='mt-2'>
-                  <Moment format='YYYY/MM/DD'>{exp.from}</Moment> -{' '}
+                  <Moment format='DD-MM-YYYY'>{exp.from}</Moment> -{' '}
                   {exp.to ? (
-                    <Moment format='YYYY/MM/DD'>{exp.to}</Moment>
+                    <Moment format='DD-MM-YYYY'>{exp.to}</Moment>
                   ) : (
                     'current'
                   )}

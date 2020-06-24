@@ -53,12 +53,12 @@ const PostItem = ({
           <li>
             {isLiked == null ? (
               <FavoriteBorderIcon
-                style={{ color: '#cccccc' }}
+                style={{ color: '#cccccc', cursor: 'pointer' }}
                 onClick={() => addLike(post && post._id)}
               />
             ) : (
               <FavoriteIcon
-                style={{ color: 'rgb(202, 70, 70)' }}
+                style={{ color: 'rgb(202, 70, 70)', cursor: 'pointer' }}
                 onClick={() => removeLike(post && post._id)}
               />
             )}{' '}

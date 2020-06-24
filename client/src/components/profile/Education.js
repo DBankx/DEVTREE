@@ -13,9 +13,9 @@ const Education = ({ profile }) => {
               <div className='edu-sec' key={edu._id}>
                 <h4>{edu.school}</h4>
                 <p className='mt-2'>
-                  <Moment format='YYYY/MM/DD'>{edu.from}</Moment> -{' '}
+                  <Moment format='DD-MM-YYYY'>{edu.from}</Moment> -{' '}
                   {edu.to ? (
-                    <Moment format='YYYY/MM/DD'>{edu.to}</Moment>
+                    <Moment format='DD-MM-YYYY'>{edu.to}</Moment>
                   ) : (
                     'current'
                   )}

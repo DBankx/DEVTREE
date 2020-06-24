@@ -347,6 +347,7 @@ main {
     align-items: center;
     width: 100vw;
     height: 100vh;
+    border-radius: 0;
   }
   .register-box .p2 {
     margin-top: 3%;
@@ -372,8 +373,9 @@ main {
   margin-top: 2em;
   color: #fff;
   font-weight: 600;
-  width: 50%;
+  width: 30%;
   outline: none;
+  letter-spacing: 0.3ch;
 }
 
 .auth-form button:hover {
@@ -1336,6 +1338,7 @@ small {
 
 .del-btn {
   color: #333;
+  cursor: pointer;
 }
 
 .del-btn:hover {
