@@ -13,7 +13,7 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send('welcome to dev tree');
+  res.send('welcome to devtree');
 });
 
 // routes

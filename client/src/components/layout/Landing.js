@@ -9,32 +9,27 @@ const Landing = () => {
   return (
     <Fragment>
       <div className='landing-page'>
-        <div className='top-banner'>
-          <img className='logo-image' src={devtree} alt='app logo' />
+        <section className='top-section'>
           <div className='top-content'>
-            <div className='top-content-words'>
-              <h1>Connecting Developers Wordlwide</h1>
-              <p>
-                Devtree is the number one platform for connecting with
-                developers from different niches world wide, and is trusted by
-                millions.
-              </p>
-              <ul>
-                <li>
-                  <Zoom in={true}>
-                    <Fab variant='extended'>Register</Fab>
-                  </Zoom>
-                </li>
-                <li>
-                  <Zoom in={true}>
-                    <Fab variant='extended'>Login</Fab>
-                  </Zoom>
-                </li>
-              </ul>
-            </div>
-            <img src={banner1} alt='Banner image' />
+            <h1>Connecting developers worldwide</h1>
+            <p>
+              Join Devtree to share toughts with developers from different
+              niches from anywhere
+            </p>
+            <ul>
+              <li>
+                <Zoom in={true}>
+                  <Fab variant='extended'>Register</Fab>
+                </Zoom>
+              </li>
+              <li>
+                <Zoom in={true}>
+                  <Fab variant='extended'>Login</Fab>
+                </Zoom>
+              </li>
+            </ul>
           </div>
-        </div>
+        </section>
       </div>
     </Fragment>
   );
