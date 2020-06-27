@@ -18,6 +18,7 @@ const PostTop = ({
   history,
   deletePost
 }) => {
+  // checks if user has liked the post
   var isLiked;
 
   async function getLiked() {

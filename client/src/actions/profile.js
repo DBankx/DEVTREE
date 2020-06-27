@@ -7,7 +7,9 @@ import {
   DELETE_ACCOUNT,
   CLEAR_PROFILE,
   GET_PROFILES,
-  FIND_PROFILE
+  FIND_PROFILE,
+  GET_USER_POSTS,
+  GET_LIKED_POSTS
 } from './index';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -249,6 +251,34 @@ export const getProfileByUsername = (username) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: FIND_PROFILE,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+// get all user posts
+export const getUserPosts = (user_id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/profile/user/posts/${user_id}`);
+
+    dispatch({ type: GET_USER_POSTS, payload: res.data });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+// get all posts liked by user
+export const getLikedPosts = (user_id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/profile//user/posts/liked/${user_id}`);
+
+    dispatch({ type: GET_LIKED_POSTS, payload: res.data });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }

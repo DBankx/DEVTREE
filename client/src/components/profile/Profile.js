@@ -1,7 +1,11 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../layout/Spinner';
-import { getProfileById } from '../../actions/profile';
+import {
+  getProfileById,
+  getUserPosts,
+  getLikedPosts
+} from '../../actions/profile';
 import { connect } from 'react-redux';
 import ProfileTop from './ProfileTop';
 import Profilebio from './Profilebio';
@@ -11,93 +15,133 @@ import Education from './Education';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
 import { Link } from 'react-router-dom';
+import MainProfile from './MainProfile';
+import PersonIcon from '@material-ui/icons/Person';
+import MessageIcon from '@material-ui/icons/Message';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import GithubRepos from './GithubRepos';
+import PostItem from '../posts/PostItem';
 
-const Profile = ({
+function Profile({
   getProfileById,
   auth,
-  profile: { profile, loading },
-  match
-}) => {
+  profile: { profile, loading, posts, likedPosts },
+  getUserPosts,
+  match,
+  getLikedPosts
+}) {
   useEffect(() => {
     getProfileById(match.params.id);
-  }, [getProfileById]);
+    getUserPosts(match.params.id);
+    getLikedPosts(match.params.id);
+  }, [getProfileById, getUserPosts, getLikedPosts]);
+
+  // this controls the clicks of the tab view
+  const [click, setClick] = useState(false);
+  const [click2, setClick2] = useState(false);
+  const [click3, setClick3] = useState(true);
+
+  function handleClick() {
+    setClick(true);
+    setClick2(false);
+    setClick3(false);
+  }
+
+  function handleClick2() {
+    setClick2(true);
+    setClick(false);
+    setClick3(false);
+  }
+
+  function handleClick3() {
+    setClick3(true);
+    setClick2(false);
+    setClick(false);
+  }
 
   return (
     <Fragment>
       {profile === null || loading ? (
-        profile === null && loading === false ? (
-          <div className='next'>
-            <div className='error-text'>
-              <p>You have not set up your profile yet</p>
-              <Zoom in={true}>
-                <Fab variant='extended'>
-                  <Link to='/create-profile'>Create Profile</Link>
-                </Fab>
-              </Zoom>
-            </div>
-          </div>
-        ) : (
-          <Spinner />
-        )
+        <Spinner />
       ) : (
         <div className='next'>
           <div className='profile'>
             <ProfileTop profile={profile} auth={auth} />
-            <Profilebio profile={profile} />
-            <ProfileSkills profile={profile} />
-            <div className='exp-edu'>
-              <Experience profile={profile} />
-              <Education profile={profile} />
+          </div>
+          <div className='wrapper'>
+            <div className='tabs'>
+              <ul>
+                <li className={click3 ? 'active' : null} onClick={handleClick3}>
+                  <span>
+                    <PersonIcon className='icons' />
+                  </span>
+                  <span className='text'>Profile</span>
+                </li>
+                <li onClick={handleClick2} className={click2 ? 'active' : null}>
+                  <span>
+                    <MessageIcon className='icons' />
+                  </span>
+                  <span className='text'>Posts</span>
+                </li>
+                <li onClick={handleClick} className={click ? 'active' : null}>
+                  <span>
+                    <FavoriteIcon className='icons' />
+                  </span>
+                  <span className='text'>Liked Posts</span>
+                </li>
+              </ul>
             </div>
-
-            <div className='github-repos'>
-              <h3>
-                <i className='fab fa-github'></i> Github Repos
-              </h3>
-
-              <div className='repo'>
-                <div className='repo-desc'>
-                  <h5 className='mt-2'>Repo Name</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ducimus, accusamus.
-                  </p>
-                </div>
-                <div className='activity'>
-                  <ul>
-                    <li>
-                      <strong>Stars: </strong>10
-                    </li>
-                    <li>
-                      <strong>Forks: </strong>54
-                    </li>
-                    <li>
-                      <strong>Watchers: </strong>23
-                    </li>
-                  </ul>
+            <div className='content'>
+              <div
+                className='tab-wrap'
+                style={{ display: click3 ? 'block' : 'none' }}
+              >
+                <div className='tab-content'>
+                  <Profilebio profile={profile} />
+                  <ProfileSkills profile={profile} />
+                  <div className='exp-edu'>
+                    <Experience profile={profile} />
+                    <Education profile={profile} />
+                  </div>
+                  <GithubRepos />
                 </div>
               </div>
-
-              <div className='repo'>
-                <div className='repo-desc'>
-                  <h5 className='mt-2'>Repo Name 2</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ducimus, accusamus.
-                  </p>
+              <div
+                className='tab-wrap'
+                style={{ display: click2 ? 'block' : 'none' }}
+              >
+                <div className='tab-content'>
+                  <div className='posts-area'>
+                    <div className='posts-section'>
+                      {posts.length > 0 ? (
+                        posts.map((post) => (
+                          <PostItem key={post._id} post={post} />
+                        ))
+                      ) : (
+                        <p>{profile.user.username} has no posts yet...</p>
+                      )}
+                    </div>
+                  </div>
                 </div>
-                <div className='activity'>
-                  <ul>
-                    <li>
-                      <strong>Stars: </strong>10
-                    </li>
-                    <li>
-                      <strong>Forks: </strong>54
-                    </li>
-                    <li>
-                      <strong>Watchers: </strong>23
-                    </li>
-                  </ul>
+              </div>
+              <div
+                className='tab-wrap'
+                style={{ display: click ? 'block' : 'none' }}
+              >
+                <div className='tab-content'>
+                  <div className='posts-area'>
+                    <div className='posts-section'>
+                      {likedPosts.length > 0 ? (
+                        likedPosts.map((post) => (
+                          <PostItem key={post._id} post={post} />
+                        ))
+                      ) : (
+                        <p>
+                          {profile.user.username} hasn't liked any posts yet...
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -106,17 +150,15 @@ const Profile = ({
       )}
     </Fragment>
   );
-};
-
-Profile.propTypes = {
-  getProfileById: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
-};
+}
 
 const mapState = (state) => ({
-  profile: state.profile,
-  auth: state.auth
+  auth: state.auth,
+  profile: state.profile
 });
 
-export default connect(mapState, { getProfileById })(Profile);
+export default connect(mapState, {
+  getProfileById,
+  getUserPosts,
+  getLikedPosts
+})(Profile);

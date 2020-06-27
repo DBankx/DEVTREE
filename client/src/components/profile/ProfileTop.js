@@ -9,6 +9,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 import YoutubeIcon from '@material-ui/icons/YouTube';
 import { follow, unfollow } from '../../actions/auth';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const ProfileTop = ({ profile, auth, follow, unfollow }) => {
   // function that checks if a user is following someone depending if the use is authenticated or not
@@ -56,6 +57,19 @@ const ProfileTop = ({ profile, auth, follow, unfollow }) => {
               </Zoom>
             )
           ) : null}
+
+          <ul className='follow mt-3'>
+            <li>
+              <Link to='#'>
+                <span>{profile.user.following.length}</span> following
+              </Link>
+            </li>
+            <li>
+              <Link to='#'>
+                <span>{profile.user.followers.length}</span> followers
+              </Link>
+            </li>
+          </ul>
 
           <ul className='links mt-4'>
             {profile.website && (

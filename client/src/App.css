@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
+  list-style: none;
 }
 
 body {
@@ -735,10 +736,6 @@ main {
 .img-words button:hover {
   background-color: #e6e6e6;
   transition: 600ms;
-}
-
-.profile-bio {
-  margin-top: 3em;
 }
 
 .profile-bio .main-profile ul {
@@ -1519,4 +1516,116 @@ small {
   border: 1.5px solid #603cc9;
 }
 
-@media (max-width: );
+.PrivateTabIndicator-colorSecondary-3 {
+  background: #8c52ff;
+}
+
+/* styling the profile tabs section */
+
+.wrapper {
+  width: 100%;
+  margin: 2em auto;
+  color: #3b3b3b;
+}
+
+.tabs ul {
+  display: flex;
+  background: #fbfbfb;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  margin-bottom: 25px;
+}
+
+.tabs ul li {
+  width: 100%;
+  padding: 15px;
+  border-right: 1px solid #dddddd;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tabs ul li:last-child {
+  border-right: 0px;
+}
+
+.tabs ul li .icons {
+  font-size: 20px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.tabs ul li:before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #8164d4;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.tabs ul li:hover,
+.tabs ul li.active {
+  color: #8c52ff;
+}
+
+.tabs ul li:hover::before,
+.tabs ul li.active:before {
+  opacity: 1;
+}
+
+.content {
+  background: #fbfbfb;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  padding: 1em;
+}
+
+.follow {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.follow li {
+  padding-right: 15px;
+}
+
+.follow li a {
+  text-decoration: none;
+  color: rgb(197, 197, 197);
+}
+
+.follow li a span {
+  font-weight: 600;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .follow {
+    justify-content: space-evenly;
+  }
+
+  .follow li {
+    padding-right: 0;
+  }
+
+  .profile-top .profile-image .links {
+    justify-content: space-evenly;
+  }
+
+  .profile-top .profile-image .links li {
+    padding: 0;
+  }
+
+  .profile-top .profile-image .links li:first-child {
+    padding: 0;
+  }
+}

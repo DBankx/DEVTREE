@@ -6,7 +6,9 @@ import {
   DELETE_EXPERIENCE,
   CLEAR_PROFILE,
   FIND_PROFILE,
-  GET_PROFILES
+  GET_PROFILES,
+  GET_USER_POSTS,
+  GET_LIKED_POSTS
 } from '../actions/index';
 
 const initialState = {
@@ -15,6 +17,8 @@ const initialState = {
   loading: true,
   profiles: [],
   repos: [],
+  posts: [],
+  likedPosts: [],
   errors: {}
 };
 
@@ -54,6 +58,19 @@ const profile = (state = initialState, action) => {
         ...state,
         viewProfiles: payload,
         loading: null
+      };
+    case GET_USER_POSTS:
+      return {
+        ...state,
+        posts: payload,
+        loading: false
+      };
+
+    case GET_LIKED_POSTS:
+      return {
+        ...state,
+        likedPosts: payload,
+        loading: false
       };
 
     default:
