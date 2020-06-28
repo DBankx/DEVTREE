@@ -16,7 +16,7 @@ const PostForm = ({ user, createPost }) => {
 
   return (
     <div className='post-form'>
-      <Link to={`/profile/${user && user._id}`}>
+      <Link to={`/profile/${user && user._id}`} className='profile-post-link'>
         <Avatar
           className='post-profile'
           src={user && user.avatar}

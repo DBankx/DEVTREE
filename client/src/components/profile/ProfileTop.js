@@ -60,12 +60,12 @@ const ProfileTop = ({ profile, auth, follow, unfollow }) => {
 
           <ul className='follow mt-3'>
             <li>
-              <Link to='#'>
+              <Link to={`/following&followers/${profile.user._id}`}>
                 <span>{profile.user.following.length}</span> following
               </Link>
             </li>
             <li>
-              <Link to='#'>
+              <Link to={`/following&followers/${profile.user._id}`}>
                 <span>{profile.user.followers.length}</span> followers
               </Link>
             </li>

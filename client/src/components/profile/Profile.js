@@ -87,7 +87,7 @@ function Profile({
                   <span>
                     <FavoriteIcon className='icons' />
                   </span>
-                  <span className='text'>Liked Posts</span>
+                  <span className='text'>Liked</span>
                 </li>
               </ul>
             </div>

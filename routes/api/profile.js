@@ -378,7 +378,9 @@ router.get('/github/:githubusername', auth, async (req, res) => {
 // get all users post from their id
 router.get('/user/posts/:user_id', auth, async (req, res) => {
   try {
-    const post = await Post.find({ user: req.params.user_id });
+    const post = await Post.find({ user: req.params.user_id }).sort({
+      date: -1
+    });
 
     if (!post) {
       res.send(404).json({ msg: 'Nothing was found' });
@@ -394,9 +396,11 @@ router.get('/user/posts/:user_id', auth, async (req, res) => {
 // find all posts user has liked
 router.get('/user/posts/liked/:user_id', auth, async (req, res) => {
   try {
-    const posts = await Post.find().elemMatch('likes', {
-      user: req.params.user_id
-    });
+    const posts = await Post.find()
+      .elemMatch('likes', {
+        user: req.params.user_id
+      })
+      .sort({ date: -1 });
 
     if (!posts) {
       res.status(404).json({ msg: 'No posts found' });

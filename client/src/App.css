@@ -1061,7 +1061,6 @@ main {
 
 .posts-area .post .post-content .trigger-bottom li:last-child {
   background: initial;
-  margin-left: 2em;
 }
 
 .comments {
@@ -1081,6 +1080,10 @@ main {
 
 @media (max-width: 600px) {
   .post-form a img {
+    display: none;
+  }
+
+  .post-form .profile-post-link {
     display: none;
   }
 
@@ -1106,11 +1109,10 @@ main {
     margin: 0 auto;
   }
   .posts-area .post .trigger-bottom {
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
   .posts-area .post .trigger-bottom li {
-    padding: 0 4px;
+    padding: 0;
   }
   .posts-area .post .top-info {
     justify-content: center;
@@ -1559,6 +1561,15 @@ small {
   vertical-align: middle;
 }
 
+@media (max-width: 600px) {
+  .tabs ul li .icons {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 0.3em;
+  }
+}
+
 .tabs ul li:before {
   content: '';
   position: absolute;
@@ -1628,4 +1639,31 @@ small {
   .profile-top .profile-image .links li:first-child {
     padding: 0;
   }
+}
+
+/* styling the follwer and following page */
+.follow-item ul {
+  margin: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.follow-item ul li {
+  padding-right: 20px;
+}
+
+.follow-item {
+  border: 1px solid #dddddd;
+}
+
+.follow-item:first-child {
+  border-top: 0;
+}
+
+.follow-item:last-child {
+  border-bottom: 0;
+}
+
+.back-link {
+  margin-top: 1em;
 }
