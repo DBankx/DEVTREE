@@ -51,6 +51,9 @@ const Experience = ({ addExperience, history }) => {
 
   return (
     <div className='next'>
+      <Link to='/dashboard' className='mt-3'>
+        <KeyboardBackspaceIcon /> Back to Dashboard
+      </Link>
       <h2 className='mt-3'>
         <WorkIcon /> Add Experience
       </h2>
@@ -173,9 +176,6 @@ const Experience = ({ addExperience, history }) => {
               Submit
             </Fab>
           </Zoom>
-          <Link to='/dashboard' className='mt-3'>
-            <KeyboardBackspaceIcon /> Back to Dashboard
-          </Link>
         </form>
       </div>
     </div>

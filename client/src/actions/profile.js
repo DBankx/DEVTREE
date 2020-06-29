@@ -9,7 +9,8 @@ import {
   GET_PROFILES,
   FIND_PROFILE,
   GET_USER_POSTS,
-  GET_LIKED_POSTS
+  GET_LIKED_POSTS,
+  GET_REPOS
 } from './index';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -276,6 +277,20 @@ export const getLikedPosts = (user_id) => async (dispatch) => {
     const res = await axios.get(`/api/profile//user/posts/liked/${user_id}`);
 
     dispatch({ type: GET_LIKED_POSTS, payload: res.data });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+// get users github repos
+export const getRepos = (githubUsername) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/profile/github/${githubUsername}`);
+
+    dispatch({ type: GET_REPOS, payload: res.data });
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,

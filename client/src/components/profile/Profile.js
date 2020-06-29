@@ -4,7 +4,8 @@ import Spinner from '../layout/Spinner';
 import {
   getProfileById,
   getUserPosts,
-  getLikedPosts
+  getLikedPosts,
+  getRepos
 } from '../../actions/profile';
 import { connect } from 'react-redux';
 import ProfileTop from './ProfileTop';
@@ -15,7 +16,6 @@ import Education from './Education';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
 import { Link } from 'react-router-dom';
-import MainProfile from './MainProfile';
 import PersonIcon from '@material-ui/icons/Person';
 import MessageIcon from '@material-ui/icons/Message';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -25,16 +25,19 @@ import PostItem from '../posts/PostItem';
 function Profile({
   getProfileById,
   auth,
-  profile: { profile, loading, posts, likedPosts },
+  profile: { profile, loading, posts, likedPosts, repos },
   getUserPosts,
   match,
-  getLikedPosts
+  getLikedPosts,
+  getRepos
 }) {
+  // loads all the data needed as soon as the component renders
   useEffect(() => {
     getProfileById(match.params.id);
     getUserPosts(match.params.id);
     getLikedPosts(match.params.id);
-  }, [getProfileById, getUserPosts, getLikedPosts]);
+    getRepos(profile && profile.githubusername);
+  }, [getProfileById, getUserPosts, getLikedPosts, getRepos]);
 
   // this controls the clicks of the tab view
   const [click, setClick] = useState(false);
@@ -96,6 +99,7 @@ function Profile({
                 className='tab-wrap'
                 style={{ display: click3 ? 'block' : 'none' }}
               >
+                {/* loads all the users profile contents */}
                 <div className='tab-content'>
                   <Profilebio profile={profile} />
                   <ProfileSkills profile={profile} />
@@ -103,13 +107,16 @@ function Profile({
                     <Experience profile={profile} />
                     <Education profile={profile} />
                   </div>
-                  <GithubRepos />
+                  {profile.githubusername ? (
+                    <GithubRepos repos={repos} />
+                  ) : null}
                 </div>
               </div>
               <div
                 className='tab-wrap'
                 style={{ display: click2 ? 'block' : 'none' }}
               >
+                {/* loads all the users posts */}
                 <div className='tab-content'>
                   <div className='posts-area'>
                     <div className='posts-section'>
@@ -128,6 +135,7 @@ function Profile({
                 className='tab-wrap'
                 style={{ display: click ? 'block' : 'none' }}
               >
+                {/* renders all the users liked posts */}
                 <div className='tab-content'>
                   <div className='posts-area'>
                     <div className='posts-section'>
@@ -157,8 +165,10 @@ const mapState = (state) => ({
   profile: state.profile
 });
 
+// connects the component to the redux store
 export default connect(mapState, {
   getProfileById,
   getUserPosts,
-  getLikedPosts
+  getLikedPosts,
+  getRepos
 })(Profile);

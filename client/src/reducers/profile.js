@@ -8,7 +8,8 @@ import {
   FIND_PROFILE,
   GET_PROFILES,
   GET_USER_POSTS,
-  GET_LIKED_POSTS
+  GET_LIKED_POSTS,
+  GET_REPOS
 } from '../actions/index';
 
 const initialState = {
@@ -71,6 +72,12 @@ const profile = (state = initialState, action) => {
         ...state,
         likedPosts: payload,
         loading: false
+      };
+    case GET_REPOS:
+      return {
+        ...state,
+        loading: false,
+        repos: payload
       };
 
     default:

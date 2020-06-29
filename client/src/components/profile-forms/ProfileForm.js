@@ -27,21 +27,7 @@ const ProfileForm = ({
   updateProfile,
   history
 }) => {
-  const [formData, setFormData] = useState({
-    status: '',
-    company: '',
-    location: '',
-    skills: '',
-    githubusername: '',
-    bio: '',
-    website: '',
-    youtube: '',
-    twitter: '',
-    instagram: '',
-    facebook: 'facebook',
-    linkedin: ''
-  });
-
+  // store the users profile in the state as soon as component mounts
   useEffect(() => {
     async function profile() {
       await user;
@@ -49,6 +35,38 @@ const ProfileForm = ({
     }
     profile();
   }, [getProfile, loading, user]);
+
+  // checks the profile field and display the infotmation into the corresponding fields or display an empty field
+  const [formData, setFormData] = useState({
+    status: profile && profile.status ? profile.status : '',
+    company: profile && profile.company ? profile.company : '',
+    location: profile && profile.location ? profile.location : '',
+    skills: profile && profile.skills ? profile.skills.join(',') : '',
+    githubusername:
+      profile && profile.githubusername ? profile.githubusername : '',
+    bio: profile && profile.bio ? profile.bio : '',
+    website: profile && profile.website ? profile.website : '',
+    youtube:
+      profile && profile.social && profile.social.youtube
+        ? profile.social.youtube
+        : '',
+    twitter:
+      profile && profile.social && profile.social.twitter
+        ? profile.social.twitter
+        : '',
+    instagram:
+      profile && profile.social && profile.social.instagram
+        ? profile.social.instagram
+        : '',
+    facebook:
+      profile && profile.social && profile.social.facebook
+        ? profile.social.facebook
+        : '',
+    linkedin:
+      profile && profile.social && profile.social.linkedin
+        ? profile.social.linkedin
+        : ''
+  });
 
   const [toggle, setToggle] = useState(false);
 
@@ -79,6 +97,7 @@ const ProfileForm = ({
   }
 
   return (
+    // renders the information in the state
     <Fragment>
       <div className='next'>
         <h2 className='mt-3'>
