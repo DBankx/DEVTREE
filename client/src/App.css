@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -1430,94 +1433,6 @@ small {
   text-decoration: none;
 }
 
-/* styling the landing page */
-
-.landing-page {
-  width: 100%;
-}
-
-.top-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70%;
-  background: linear-gradient(45deg, #8c52ff, #8164d4);
-  border-radius: 0 0 80% 80%/0 0 100% 100%;
-  transform: scaleX(1.5);
-}
-
-.top-section {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 80vh;
-  overflow: hidden;
-}
-
-.top-content {
-  position: relative;
-  z-index: 1;
-  margin: 0 auto;
-  width: 900px;
-  text-align: center;
-}
-
-.top-content h1 {
-  margin: 0;
-  padding: 0;
-  color: #fff;
-  font-size: 3em;
-  font-weight: 600;
-  margin-bottom: 0.5em;
-}
-
-.top-content p {
-  color: #fff;
-  font-size: 1.5rem;
-  margin-bottom: 0.5em;
-}
-
-.top-content ul {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  justify-content: center;
-  margin-top: 2em;
-}
-
-.top-content ul li {
-  padding: 0 30px;
-}
-
-.top-content ul li button {
-  padding: 8px 25px;
-  background: #fff;
-  color: #8164d4;
-
-  outline: none;
-}
-
-.top-content ul li button:hover {
-  background-color: #603cc9;
-  color: #fff;
-}
-
-.top-content ul li:last-child button {
-  padding: 8px 35px;
-  background: #5e0fdd;
-  color: #fff;
-}
-
-.top-content ul li:last-child button:hover {
-  background-color: #fff;
-  color: #603cc9;
-  border: 1.5px solid #603cc9;
-}
-
 .PrivateTabIndicator-colorSecondary-3 {
   background: #8c52ff;
 }
@@ -1666,4 +1581,182 @@ small {
 
 .back-link {
   margin-top: 1em;
+}
+
+/* styling the landing page */
+
+.top-section {
+  text-align: center;
+  color: #fff;
+  background-color: #8c52ff;
+}
+
+.top-logo {
+  width: 100px;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 100%;
+  margin-top: 1em;
+}
+
+.top-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3em;
+  padding: 2em;
+}
+
+.top-img img {
+  width: 100%;
+  animation: animator 1.2s ease-in;
+}
+
+.top-banner-text {
+  text-align: left;
+}
+
+.top-banner-text h1 {
+  font-weight: 700;
+}
+
+.top-banner-text p {
+  font-size: 1.25rem;
+  font-weight: lighter;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.top-banner-text ul {
+  display: flex;
+  align-items: center;
+}
+
+.top-banner-text li:last-child {
+  padding: 0 40px;
+}
+
+.top-banner-text li:last-child button {
+  padding: 0 50px;
+  border: 1px solid #fff;
+  background: none;
+  color: #fff;
+  box-shadow: none;
+}
+
+.top-banner-text li button {
+  outline: none;
+  background-color: #fff;
+  color: #8c52ff;
+  padding: 0 50px;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.top-banner-text li button:hover {
+  text-decoration: none;
+}
+
+.top-banner-text li button:hover {
+  background-color: #fff;
+}
+
+.top-banner-text li:last-child button:hover {
+  background-color: #fff;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  color: #333;
+  transition: 600ms;
+}
+
+@keyframes animator {
+  from {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* #C822FF */
+
+.features {
+  margin-top: 2em;
+  text-align: center;
+  height: 100%;
+}
+
+.features h2 {
+  font-weight: 400;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.feature-section {
+  margin-top: 3em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2em;
+}
+
+.feat-card {
+  padding: 1em;
+  text-align: center;
+  border-radius: 30px;
+  width: 18rem;
+  margin: 0 auto;
+}
+
+.feat-card p {
+  margin-top: 1em;
+}
+
+.feat-body {
+  margin: 1em;
+}
+
+.feat-body > h6 {
+  margin: 2em auto 1em auto;
+  color: #8c52ff;
+  letter-spacing: 1ch;
+  text-transform: uppercase;
+}
+
+.feat-card h6 {
+  font-weight: 600;
+  margin-top: 1em;
+}
+
+.counter-talk h1 {
+  font-weight: 800;
+  color: #8c52ff;
+}
+
+.one {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.one span {
+  margin-top: -1em;
+  font-size: 33px;
+  color: #8c52ff;
+}
+
+.counter {
+  margin-top: 2em;
+  text-align: center;
+  background-color: #dddddd;
+}
+
+.counter-talk {
+  margin: 0 auto;
+  padding: 4em;
+}
+
+.counter-talk p {
+  color: #7b7b93;
 }

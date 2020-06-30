@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Alert from '@material-ui/lab/Alert';
 import { connect } from 'react-redux';
 
+// This renders an alert according to the setAlert action with messages and the alert type
 const SetAlert = ({ alerts }) => {
   return (
     <Fragment>

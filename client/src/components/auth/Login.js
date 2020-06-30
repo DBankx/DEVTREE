@@ -15,6 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import PersonIcon from '@material-ui/icons/Person';
 
+// Login Page
 const Login = ({ login, auth: { isAuthenticated } }) => {
   const [formData, setFormData] = useState({
     username: '',
@@ -36,6 +37,7 @@ const Login = ({ login, auth: { isAuthenticated } }) => {
     });
   }
 
+  // checks if user is logged in..if true redirect to the dashboard
   if (isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
@@ -115,6 +117,7 @@ Login.propTypes = {
   isAuthenticated: PropTypes.bool
 };
 
+// gets the state from the redux store
 const mapState = (state) => ({
   auth: state.auth
 });
