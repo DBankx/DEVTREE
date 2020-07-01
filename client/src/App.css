@@ -1760,3 +1760,79 @@ small {
 .counter-talk p {
   color: #7b7b93;
 }
+
+.testimonials {
+  margin-top: 2em;
+}
+
+.tests > h3 {
+  text-align: center;
+}
+
+.test-box {
+  border-radius: 20px;
+  box-shadow: 9px 5px 15px 5px rgba(0, 0, 0, 0.3);
+  padding: 1em;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.test-box img {
+  width: 70px;
+}
+
+.test-box-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.test-box-items p {
+  margin-left: 1em;
+  line-height: 1.5;
+}
+
+.test-box-items img {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+}
+
+.test-box span {
+  margin-left: 1em;
+  font-weight: 600;
+}
+
+.tests-area {
+  margin-top: 2em;
+}
+
+.footer-stuff {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3em;
+}
+
+.email {
+  display: flex;
+  align-items: center;
+}
+
+.email span {
+  font-weight: 600;
+}
+
+.email img {
+  width: 35px;
+  margin-right: 0.5em;
+}
+
+.social-links-footer ul {
+  display: flex;
+  align-items: center;
+}
+
+.social-links-footer li {
+  padding: 0 20px;
+}

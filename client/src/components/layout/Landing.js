@@ -7,7 +7,11 @@ import devtreeMockup from '../../img/devtreeBanner.png';
 import speakerIcon from '../../img/speaker-icon.png';
 import employment from '../../img/employment.png';
 import connect from '../../img/connect.png';
-import quotation from '../../img/quotation.png';
+import emailIcon from '../../img/email.png';
+import twitterIcon from '../../img/twitter.png';
+import facebookIcon from '../../img/facebook-icon.png';
+import instagramIcon from '../../img/instagramIcon.png';
+import redditIcon from '../../img/reddit.png';
 
 const Landing = () => {
   return (
@@ -93,22 +97,35 @@ const Landing = () => {
             </p>
           </div>
         </section>
-        <section className='testimonials'>
-          <div className='tests'>
-            <h3>Things our users have said about us</h3>
-            <div className='tests-area'>
-              <div className='test-square'>
-                <img src={quotation} alt='marks' />
-                <div className='test-box'>
-                  <p>
-                    This app made it easy for me to find projects that i could
-                    use for my portfolio so i could get my first job as a
-                    developer!!, really great app, and generally nice people on
-                    here.
-                  </p>
-                  <span>John Deremego</span>
-                </div>
-              </div>
+        <section className='footer'>
+          <div className='footer-stuff'>
+            <div className='email'>
+              <img src={emailIcon} alt='email icon' /> Email us at:{' '}
+              <span>loldondo@gmail.com</span>
+            </div>
+            <div className='social-links-footer'>
+              <ul>
+                <li>
+                  <a href='http://www.twitter.com/DBankx1'>
+                    <img src={twitterIcon} alt='twitter icon' />
+                  </a>{' '}
+                </li>
+                <li>
+                  <a href='http://www.facebook.com/DBankx1'>
+                    <img src={facebookIcon} alt='facebook icon' />
+                  </a>{' '}
+                </li>
+                <li>
+                  <a href='http://www.instagram.com/DBankx1'>
+                    <img src={instagramIcon} alt='instagram icon' />
+                  </a>{' '}
+                </li>
+                <li>
+                  <a href='http://www.reddit.com/trickshot711'>
+                    <img src={redditIcon} alt='reddit icon' />
+                  </a>{' '}
+                </li>
+              </ul>
             </div>
           </div>
         </section>
