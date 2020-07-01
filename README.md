@@ -45,7 +45,7 @@ git checkout b prod
 ```
 git add -f .env/prod.json
 ```
-* *DO NOT PUSH THE PROD BRANCH TO GITHUB*
+* ### DO NOT PUSH THE PROD BRANCH TO GITHUB
 commit it
 ```
 git commit -m 'ready to deploy'
@@ -54,7 +54,7 @@ git commit -m 'ready to deploy'
 ```
 heroku create
 ```
-* push the branch to heroku *NOT GITHUB*
+* push the branch to heroku ###NOT GITHUB
 ```
 git push heroku prod:master
 
