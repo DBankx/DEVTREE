@@ -32,3 +32,4 @@ export const FIND_PROFILE = 'FIND_PROFILE';
 export const GET_USER_POSTS = 'GET_USER_POSTS';
 export const GET_LIKED_POSTS = 'GET_LIKED_POSTS';
 export const GET_REPOS = 'GET_REPOS';
+export const SEND_EMAIL = 'SEND_EMAIL';

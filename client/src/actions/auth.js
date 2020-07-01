@@ -9,7 +9,7 @@ import {
   CLEAR_PROFILE,
   UPDATE_FOLLOW,
   FOLLOW_ERROR,
-  UNFOLLOW_USER
+  SEND_EMAIL
 } from './index';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -144,5 +144,22 @@ export const unfollow = (user_id) => async (dispatch) => {
     });
   } catch (err) {
     dispatch({ type: FOLLOW_ERROR });
+  }
+};
+
+// send an email
+export const sendEmail = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    await axios.post('/api/user/contact', formData, config);
+
+    dispatch(setAlert('Email was sent', 'success'));
+  } catch (err) {
+    dispatch(setAlert('Server Error, Try again!', 'error'));
   }
 };

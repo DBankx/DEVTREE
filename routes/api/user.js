@@ -7,6 +7,7 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require('../../middlewares/auth');
+const nodemailer = require('nodemailer');
 
 // creating a user
 
@@ -176,6 +177,41 @@ router.put('/unfollow/:user_id', auth, async (req, res) => {
     res.json(userMain.following);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// send an email
+router.post('/contact', async (req, res) => {
+  // create the transporter
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    secure: 'false',
+    port: 25,
+    auth: {
+      user: process.env.GOOGLE_EMAIL,
+      pass: process.env.GOOGLE_PASS
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+
+  const { subject, message, email } = req.body;
+
+  // create the mail option
+  let mailOption = {
+    from: email,
+    to: process.env.GOOGLE_EMAIL,
+    subject: subject,
+    text: message
+  };
+
+  try {
+    await transporter.sendMail(mailOption);
+
+    res.json({ msg: 'Email has been sent' });
+  } catch (err) {
     res.status(500).send('Server Error');
   }
 });

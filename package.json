@@ -20,6 +20,7 @@
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.18",
+    "nodemailer": "^6.4.10",
     "particles.js": "^2.0.0",
     "request": "^2.88.2",
     "thunk": "0.0.1"

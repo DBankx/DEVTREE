@@ -14,6 +14,9 @@ import instagramIcon from '../../img/instagramIcon.png';
 import redditIcon from '../../img/reddit.png';
 
 const Landing = () => {
+  const year = new Date();
+  const thisYear = year.getFullYear();
+
   return (
     <Fragment>
       <div className='landing-page'>
@@ -100,8 +103,10 @@ const Landing = () => {
         <section className='footer'>
           <div className='footer-stuff'>
             <div className='email'>
-              <img src={emailIcon} alt='email icon' /> Email us at:{' '}
-              <span>loldondo@gmail.com</span>
+              <img src={emailIcon} alt='email icon' />{' '}
+              <p>
+                Email us at: <span>loldondo@gmail.com</span>
+              </p>
             </div>
             <div className='social-links-footer'>
               <ul>
@@ -126,6 +131,7 @@ const Landing = () => {
                   </a>{' '}
                 </li>
               </ul>
+              <p className='copy'>&copy; copyright devtree {thisYear} </p>
             </div>
           </div>
         </section>

@@ -22,6 +22,7 @@ import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import Spinner from './components/layout/Spinner';
 import FollowingPage from './components/profile/FollowingPage';
+import Contact from './components/layout/Contact';
 
 function App() {
   // load the user from the backend immideatly
@@ -41,6 +42,7 @@ function App() {
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <Route exact path='/contact' component={Contact} />
               <PrivateRoute
                 exact
                 path='/edit-profile'
