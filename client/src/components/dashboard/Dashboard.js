@@ -14,7 +14,7 @@ function Dashboard({
   getProfile,
   deleteAccunt,
   auth: { user },
-  profile: { profile, loading }
+  profile: { profile, loading, errors }
 }) {
   useEffect(() => {
     async function profile() {
@@ -39,18 +39,18 @@ function Dashboard({
             </h3>
           </div>
           <div className='dashboard'>
-            {profile !== null ? (
+            {errors !== null && profile !== null ? (
               <Fragment>
                 {' '}
                 <DashboardActions />
-                {profile.experience.length > 0 ? (
+                {profile && profile.experience.length > 0 ? (
                   <Experience experience={profile.experience} />
                 ) : (
                   <h6 className='mt-4' style={{ fontWeight: '600' }}>
                     No Experience Added...{' '}
                   </h6>
                 )}
-                {profile.education.length > 0 ? (
+                {profile && profile.education.length > 0 ? (
                   <Education education={profile.education} />
                 ) : (
                   <h6 className='mt-4' style={{ fontWeight: '600' }}>

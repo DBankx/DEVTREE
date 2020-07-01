@@ -25,7 +25,7 @@ import PostItem from '../posts/PostItem';
 function Profile({
   getProfileById,
   auth,
-  profile: { profile, loading, posts, likedPosts, repos },
+  profile: { profile, loading, posts, likedPosts, repos, errors },
   getUserPosts,
   match,
   getLikedPosts,
@@ -64,96 +64,117 @@ function Profile({
 
   return (
     <Fragment>
-      {profile === null || loading ? (
+      {profile === null && loading ? (
         <Spinner />
       ) : (
         <div className='next'>
-          <div className='profile'>
-            <ProfileTop profile={profile} auth={auth} />
-          </div>
-          <div className='wrapper'>
-            <div className='tabs'>
-              <ul>
-                <li className={click3 ? 'active' : null} onClick={handleClick3}>
-                  <span>
-                    <PersonIcon className='icons' />
-                  </span>
-                  <span className='text'>Profile</span>
-                </li>
-                <li onClick={handleClick2} className={click2 ? 'active' : null}>
-                  <span>
-                    <MessageIcon className='icons' />
-                  </span>
-                  <span className='text'>Posts</span>
-                </li>
-                <li onClick={handleClick} className={click ? 'active' : null}>
-                  <span>
-                    <FavoriteIcon className='icons' />
-                  </span>
-                  <span className='text'>Liked</span>
-                </li>
-              </ul>
-            </div>
-            <div className='content'>
-              <div
-                className='tab-wrap'
-                style={{ display: click3 ? 'block' : 'none' }}
-              >
-                {/* loads all the users profile contents */}
-                <div className='tab-content'>
-                  <Profilebio profile={profile} />
-                  <ProfileSkills profile={profile} />
-                  <div className='exp-edu'>
-                    <Experience profile={profile} />
-                    <Education profile={profile} />
-                  </div>
-                  {profile.githubusername ? (
-                    <GithubRepos repos={repos} />
-                  ) : null}
-                </div>
+          {profile !== null ? (
+            <div className='contain'>
+              <div className='profile'>
+                <ProfileTop profile={profile} auth={auth} />
               </div>
-              <div
-                className='tab-wrap'
-                style={{ display: click2 ? 'block' : 'none' }}
-              >
-                {/* loads all the users posts */}
-                <div className='tab-content'>
-                  <div className='posts-area'>
-                    <div className='posts-section'>
-                      {posts.length > 0 ? (
-                        posts.map((post) => (
-                          <PostItem key={post._id} post={post} />
-                        ))
-                      ) : (
-                        <p>{profile.user.username} has no posts yet...</p>
-                      )}
+              <div className='wrapper'>
+                <div className='tabs'>
+                  <ul>
+                    <li
+                      className={click3 ? 'active' : null}
+                      onClick={handleClick3}
+                    >
+                      <span>
+                        <PersonIcon className='icons' />
+                      </span>
+                      <span className='text'>Profile</span>
+                    </li>
+                    <li
+                      onClick={handleClick2}
+                      className={click2 ? 'active' : null}
+                    >
+                      <span>
+                        <MessageIcon className='icons' />
+                      </span>
+                      <span className='text'>Posts</span>
+                    </li>
+                    <li
+                      onClick={handleClick}
+                      className={click ? 'active' : null}
+                    >
+                      <span>
+                        <FavoriteIcon className='icons' />
+                      </span>
+                      <span className='text'>Liked</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className='content'>
+                  <div
+                    className='tab-wrap'
+                    style={{ display: click3 ? 'block' : 'none' }}
+                  >
+                    {/* loads all the users profile contents */}
+                    <div className='tab-content'>
+                      <Profilebio profile={profile} />
+                      <ProfileSkills profile={profile} />
+                      <div className='exp-edu'>
+                        <Experience profile={profile} />
+                        <Education profile={profile} />
+                      </div>
+                      {profile.githubusername ? (
+                        <GithubRepos repos={repos} />
+                      ) : null}
+                    </div>
+                  </div>
+                  <div
+                    className='tab-wrap'
+                    style={{ display: click2 ? 'block' : 'none' }}
+                  >
+                    {/* loads all the users posts */}
+                    <div className='tab-content'>
+                      <div className='posts-area'>
+                        <div className='posts-section'>
+                          {posts.length > 0 ? (
+                            posts.map((post) => (
+                              <PostItem key={post._id} post={post} />
+                            ))
+                          ) : (
+                            <p>{profile.user.username} has no posts yet...</p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className='tab-wrap'
+                    style={{ display: click ? 'block' : 'none' }}
+                  >
+                    {/* renders all the users liked posts */}
+                    <div className='tab-content'>
+                      <div className='posts-area'>
+                        <div className='posts-section'>
+                          {likedPosts.length > 0 ? (
+                            likedPosts.map((post) => (
+                              <PostItem key={post._id} post={post} />
+                            ))
+                          ) : (
+                            <p>
+                              {profile.user.username} hasn't liked any posts
+                              yet...
+                            </p>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                className='tab-wrap'
-                style={{ display: click ? 'block' : 'none' }}
-              >
-                {/* renders all the users liked posts */}
-                <div className='tab-content'>
-                  <div className='posts-area'>
-                    <div className='posts-section'>
-                      {likedPosts.length > 0 ? (
-                        likedPosts.map((post) => (
-                          <PostItem key={post._id} post={post} />
-                        ))
-                      ) : (
-                        <p>
-                          {profile.user.username} hasn't liked any posts yet...
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
+          ) : (
+            <div className='profile-null'>
+              <p>You Do not currently have a profile</p>
+              <Zoom>
+                <Fab variant='extended'>create Profile</Fab>
+              </Zoom>
+            </div>
+          )}
         </div>
       )}
     </Fragment>

@@ -151,6 +151,7 @@ main {
   }
   main {
     margin: 0;
+    margin-bottom: 5rem;
   }
 
   .landing {
@@ -1788,4 +1789,13 @@ small {
   .contact-section ul li {
     margin-bottom: 0.5em;
   }
+}
+
+.profile-null {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
 }
