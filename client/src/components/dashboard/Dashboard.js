@@ -21,7 +21,6 @@ function Dashboard({
       await user;
       getProfile();
     }
-
     profile();
   }, [getProfile, user]);
 
